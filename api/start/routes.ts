@@ -43,4 +43,6 @@ Route.group(() => {
   })
     .prefix('/v1')
     .middleware('auth')
+
+  Route.get('test', () => ({ hello: 'world' }))
 }).prefix('/api')

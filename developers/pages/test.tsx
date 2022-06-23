@@ -20,6 +20,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
+        <h1>Test page</h1>
         <button onClick={click}>Fetch</button>
         <pre>{res}</pre>
       </main>

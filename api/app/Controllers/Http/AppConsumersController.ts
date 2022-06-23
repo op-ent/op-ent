@@ -19,8 +19,8 @@ export default class AppConsumersController {
     return appConsumer
   }
 
-  public async index({}: HttpContextContract) {
-    return await AppConsumer.all()
+  public async index({ auth }: HttpContextContract) {
+    return await AppConsumer.query().where('user_id', auth.user!.id)
   }
 
   public async store({ request, auth }: HttpContextContract) {
