@@ -31,10 +31,16 @@ Route.group(() => {
   }).prefix('/auth')
 
   Route.group(() => {
+    Route.resource('app-consumers', 'AppConsumersController').apiOnly()
+  })
+    .prefix('/developers')
+    .middleware(['auth', 'role:developer'])
+
+  Route.group(() => {
     Route.get('me', async ({ auth }) => {
       return auth.user
     })
   })
     .prefix('/v1')
-    .middleware(['auth'])
+    .middleware('auth')
 }).prefix('/api')

@@ -1,16 +1,19 @@
 import User from 'App/Models/User'
 
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
 
-type AccessType = 'token' | 'web'
+export type AccessType = 'token' | 'web'
 
 export default class AppConsumer extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
-  @hasOne(() => User)
-  public user: HasOne<typeof User>
+  @column()
+  public user_id: number
+
+  @belongsTo(() => User)
+  public user: BelongsTo<typeof User>
 
   @column()
   public access_id: string
