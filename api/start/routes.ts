@@ -25,5 +25,16 @@ Route.get('/', async () => {
 })
 
 Route.group(() => {
-  Route.get('/', async () => ({ hello: 'api' }))
+  Route.group(() => {
+    Route.post('register', 'AuthController.register')
+    Route.post('login', 'AuthController.login')
+  }).prefix('/auth')
+
+  Route.group(() => {
+    Route.get('me', async ({ auth }) => {
+      return auth.user
+    })
+  })
+    .prefix('/v1')
+    .middleware(['auth'])
 }).prefix('/api')

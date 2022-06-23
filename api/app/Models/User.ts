@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
 import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
+import Encryption from '@ioc:Adonis/Core/Encryption'
 
 type UserRole = 'admin' | 'user' | 'developer'
 
@@ -8,7 +9,10 @@ export default class User extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
-  @column()
+  @column({
+    prepare: (value: string) => Encryption.encrypt(value),
+    consume: (value: string) => Encryption.decrypt(value),
+  })
   public email: string
 
   @column({ serializeAs: null })
@@ -23,7 +27,10 @@ export default class User extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @column()
+  @column({
+    prepare: (value: string[]): string => `{${value.join(',')}}`,
+    consume: (value: string): string[] => value.slice(1, -1).split(','),
+  })
   public role: UserRole[]
 
   @beforeSave()
