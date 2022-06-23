@@ -7,7 +7,6 @@ export default class UserRole {
     next: () => Promise<void>,
     roles: Role[]
   ) {
-    // code for middleware goes here. ABOVE THE NEXT CALL
     const user = auth.user!
     if (!roles.every((role) => user.role.includes(role))) {
       return response
