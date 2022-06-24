@@ -1,16 +1,22 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
-import client from "../lib/client";
+import {
+  Box,
+  Flex,
+  Heading,
+  useColorModeValue,
+  Text,
+  Tabs,
+  TabList,
+  Tab,
+  TabPanels,
+  TabPanel,
+  Input,
+} from "@chakra-ui/react";
+import ColorModeSwitch from "~/components/ColorModeSwitch";
+import { FormControl, FormLabel, FormHelperText } from "@chakra-ui/react";
 
 const Home: NextPage = () => {
-  const [res, setRes] = useState("res");
-
-  const click = async () => {
-    const { hello } = await client.test();
-    setRes(hello);
-  };
-
   return (
     <div>
       <Head>
@@ -20,8 +26,56 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <button onClick={click}>Fetch</button>
-        <pre>{res}</pre>
+        <Flex>
+          <Box w="50%">
+            <Heading>Developer portal</Heading>
+            <Text>Create and manage app accesses to open-dw.</Text>
+            <Text>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
+              laudantium necessitatibus, aut corporis voluptas magni vitae
+              quibusdam earum tempore. Vero optio illo commodi ab ratione
+              delectus atque veritatis, esse accusantium pariatur itaque
+              obcaecati quibusdam dolore ea cum? Quas vel eaque, beatae,
+              mollitia sequi ipsum iure voluptatum repellendus molestias omnis
+              a?
+            </Text>
+          </Box>
+          <Box w="lg" bg={useColorModeValue("gray.100", "gray.700")}>
+            <Tabs isFitted>
+              <TabList>
+                <Tab>Login</Tab>
+                <Tab>Register</Tab>
+              </TabList>
+
+              <TabPanels>
+                <TabPanel>
+                  <FormControl isRequired>
+                    <FormLabel htmlFor="email">Email address</FormLabel>
+                    <Input id="email" type="email" />
+                  </FormControl>
+                  <FormControl isRequired>
+                    <FormLabel htmlFor="password">Password</FormLabel>
+                    <Input id="password" type="password" />
+                  </FormControl>
+                </TabPanel>
+                <TabPanel>
+                  <p>two!</p>
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
+          </Box>
+        </Flex>
+        {/* <Heading>Developer portal</Heading>
+        <ColorModeSwitch />
+        <Box
+          bgColor={useColorModeValue("gray.100", "gray.700")}
+          p="4"
+          mx="auto"
+          rounded="xl"
+          maxW="md"
+        >
+          Welcome to the developer portal!
+        </Box> */}
       </main>
     </div>
   );
