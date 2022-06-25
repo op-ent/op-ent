@@ -12,9 +12,12 @@ import {
   TabPanels,
   TabPanel,
   Input,
+  VStack,
+  Button,
 } from "@chakra-ui/react";
 import ColorModeSwitch from "~/components/ColorModeSwitch";
-import { FormControl, FormLabel, FormHelperText } from "@chakra-ui/react";
+import { FormControl, FormLabel } from "@chakra-ui/react";
+import { UnlockIcon } from "@chakra-ui/icons";
 
 const Home: NextPage = () => {
   return (
@@ -39,24 +42,30 @@ const Home: NextPage = () => {
               mollitia sequi ipsum iure voluptatum repellendus molestias omnis
               a?
             </Text>
+            <ColorModeSwitch />
           </Box>
-          <Box w="lg" bg={useColorModeValue("gray.100", "gray.700")}>
+          <Box w="lg" bg={useColorModeValue("white", "gray.700")} rounded="xl">
             <Tabs isFitted>
               <TabList>
-                <Tab>Login</Tab>
-                <Tab>Register</Tab>
+                <Tab roundedTopLeft="xl">Login</Tab>
+                <Tab roundedTopRight="xl">Register</Tab>
               </TabList>
 
               <TabPanels>
                 <TabPanel>
-                  <FormControl isRequired>
-                    <FormLabel htmlFor="email">Email address</FormLabel>
-                    <Input id="email" type="email" />
-                  </FormControl>
-                  <FormControl isRequired>
-                    <FormLabel htmlFor="password">Password</FormLabel>
-                    <Input id="password" type="password" />
-                  </FormControl>
+                  <VStack spacing="4">
+                    <FormControl isRequired>
+                      <FormLabel htmlFor="email">Email address</FormLabel>
+                      <Input id="email" type="email" />
+                    </FormControl>
+                    <FormControl isRequired>
+                      <FormLabel htmlFor="password">Password</FormLabel>
+                      <Input id="password" type="password" />
+                    </FormControl>
+                  </VStack>
+                  <Button size="lg" leftIcon={<UnlockIcon />} w="100%" mt="8">
+                    Login
+                  </Button>
                 </TabPanel>
                 <TabPanel>
                   <p>two!</p>

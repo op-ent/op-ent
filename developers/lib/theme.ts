@@ -2,7 +2,9 @@ import {
   extendTheme,
   theme as base,
   withDefaultColorScheme,
+  type ComponentStyleConfig,
 } from "@chakra-ui/react";
+import { GlobalStyleProps, mode } from "@chakra-ui/theme-tools";
 
 const colors = {
   brand: {
@@ -19,15 +21,26 @@ const colors = {
   },
 };
 
+const components: Record<string, ComponentStyleConfig> = {
+  Input: {
+    defaultProps: {
+      focusBorderColor: "brand.400",
+    },
+  },
+};
+
 const theme = extendTheme(
   {
     styles: {
-      global: {
+      global: (props: GlobalStyleProps) => ({
+        "html, body": {
+          background: mode("gray.50", "gray.800")(props),
+        },
         body: {
           transitionProperty: "all",
           transitionDuration: "normal",
         },
-      },
+      }),
     },
     config: {
       disableTransitionOnChange: false,
@@ -38,6 +51,10 @@ const theme = extendTheme(
       body: "Outfit, sans-serif",
       monospace: "'JetBrains Mono', monospace",
     },
+    // components: {
+    // Input,
+    // },
+    components,
   },
   withDefaultColorScheme({ colorScheme: "brand" })
 );
