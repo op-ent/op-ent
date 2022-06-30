@@ -1,23 +1,7 @@
+import { Button } from "@mantine/core";
 import type { NextPage } from "next";
 import Head from "next/head";
-import {
-  Box,
-  Flex,
-  Heading,
-  useColorModeValue,
-  Text,
-  Tabs,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-  Input,
-  VStack,
-  Button,
-} from "@chakra-ui/react";
 import ColorModeSwitch from "~/components/ColorModeSwitch";
-import { FormControl, FormLabel } from "@chakra-ui/react";
-import { UnlockIcon } from "@chakra-ui/icons";
 
 const Home: NextPage = () => {
   return (
@@ -29,7 +13,9 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <Flex>
+        <Button>Button</Button>
+        <ColorModeSwitch />
+        {/* <Flex>
           <Box w="50%">
             <Heading>Developer portal</Heading>
             <Text>Create and manage app accesses to open-dw.</Text>
@@ -73,18 +59,7 @@ const Home: NextPage = () => {
               </TabPanels>
             </Tabs>
           </Box>
-        </Flex>
-        {/* <Heading>Developer portal</Heading>
-        <ColorModeSwitch />
-        <Box
-          bgColor={useColorModeValue("gray.100", "gray.700")}
-          p="4"
-          mx="auto"
-          rounded="xl"
-          maxW="md"
-        >
-          Welcome to the developer portal!
-        </Box> */}
+        </Flex> */}
       </main>
     </div>
   );

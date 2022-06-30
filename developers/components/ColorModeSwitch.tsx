@@ -1,19 +1,18 @@
-import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import { Stack, Switch, useColorMode } from "@chakra-ui/react";
+import { Button, useMantineColorScheme } from "@mantine/core";
 
 const ColorModeSwitch = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const dark = colorScheme === "dark";
+
   return (
-    <Stack isInline ml="auto" align="center" mb="1">
-      <MoonIcon boxSize="14px" />
-      <Switch
-        size="md"
-        isChecked={colorMode === "light"}
-        onChange={toggleColorMode}
-        colorScheme="white"
-      />
-      <SunIcon boxSize="14px" />
-    </Stack>
+    <Button
+      variant="outline"
+      color={dark ? "yellow" : "blue"}
+      onClick={() => toggleColorScheme()}
+      title="Toggle color scheme"
+    >
+      {dark ? "Sun" : "Moon"}
+    </Button>
   );
 };
 
