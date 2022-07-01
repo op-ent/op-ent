@@ -1,7 +1,30 @@
-import { Container, Group, Box, Stack, Text, Button } from "@mantine/core";
+import {
+  Container,
+  Group,
+  Box,
+  Stack,
+  Text,
+  Button,
+  createStyles,
+} from "@mantine/core";
+import { showNotification } from "@mantine/notifications";
+import Link from "next/link";
+import { FiTerminal } from "react-icons/fi";
 import ColorModeSwitch from "~/components/ColorModeSwitch";
 
+const useStyles = createStyles((theme) => ({
+  logo: {
+    ...theme.fn.focusStyles(),
+    textDecoration: "none",
+    userSelect: "none",
+    color: theme.colorScheme === "dark" ? theme.white : theme.black,
+    borderRadius: theme.radius.md,
+  },
+}));
+
 export default function () {
+  const { classes } = useStyles();
+
   return (
     <Box
       component="header"
@@ -18,17 +41,35 @@ export default function () {
     >
       <Container size="xl" px="md" py="xs">
         <Group position="apart">
-          <Stack spacing={0}>
-            <Text size="xl" weight="semibold">
-              open-dw
-            </Text>
-            <Text size="sm" color="dimmed">
-              Developer portal
-            </Text>
-          </Stack>
+          <Link href="/">
+            <a className={classes.logo}>
+              <Group>
+                <FiTerminal size={35} />
+                <Stack spacing={0}>
+                  <Text size="xl" weight="semibold">
+                    open-dw
+                  </Text>
+                  <Text size="sm" color="dimmed">
+                    Developer portal
+                  </Text>
+                </Stack>
+              </Group>
+            </a>
+          </Link>
           <Group>
             <ColorModeSwitch />
-            <Button>LOGIN</Button>
+            <Button
+              onClick={() =>
+                showNotification({
+                  color: "yellow",
+                  title: "Not implemented yet",
+                  message:
+                    "open-dw is still in development and this feature is not yet implemented.",
+                })
+              }
+            >
+              LOGIN
+            </Button>
           </Group>
         </Group>
       </Container>
