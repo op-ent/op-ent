@@ -4,11 +4,14 @@ import theme from "~/lib/theme";
 import {
   ColorScheme,
   ColorSchemeProvider,
+  Global,
   MantineProvider,
 } from "@mantine/core";
 import { useState } from "react";
-import { getCookie, setCookies } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 import { GetServerSidePropsContext } from "next";
+import { NotificationsProvider } from "@mantine/notifications";
+import Layout from "~/components/Layout/Layout";
 
 function App({
   Component,
@@ -21,7 +24,7 @@ function App({
       value || (colorScheme === "dark" ? "light" : "dark");
     setColorScheme(nextColorScheme);
     // when color scheme is updated save it to cookie
-    setCookies("mantine-color-scheme", nextColorScheme, {
+    setCookie("mantine-color-scheme", nextColorScheme, {
       maxAge: 60 * 60 * 24 * 30,
     });
   };
@@ -31,8 +34,29 @@ function App({
       colorScheme={colorScheme}
       toggleColorScheme={toggleColorScheme}
     >
-      <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
-        <Component {...pageProps} />
+      <MantineProvider
+        withNormalizeCSS
+        withGlobalStyles
+        theme={{ ...theme, colorScheme }}
+      >
+        <Global
+          styles={(theme) => ({
+            ":root": {
+              colorScheme: theme.colorScheme,
+            },
+            body: {
+              backgroundColor:
+                theme.colorScheme === "dark"
+                  ? theme.colors.dark[8]
+                  : theme.colors.gray[0],
+            },
+          })}
+        />
+        <NotificationsProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </NotificationsProvider>
       </MantineProvider>
     </ColorSchemeProvider>
   );

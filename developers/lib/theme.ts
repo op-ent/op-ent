@@ -30,7 +30,7 @@ const theme: MantineThemeOverride = {
   primaryColor: "brand",
   fontFamily: "Outfit, sans-serif",
   fontFamilyMonospace: "'JetBrains Mono', monospace",
-  headings: { fontFamily: "Anybody, cursive" },
+  headings: { fontFamily: "Outfit, sans-serif" },
 };
 
 export default theme;
