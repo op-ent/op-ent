@@ -1,5 +1,6 @@
 import { Anchor, Box, Container, Text } from "@mantine/core";
 import Link from "next/link";
+import { useCSV } from "~/hooks/useColorSchemeValue";
 
 export default function () {
   return (
@@ -7,14 +8,10 @@ export default function () {
       component="footer"
       sx={(theme) => ({
         marginTop: "auto",
-        backgroundColor:
-          theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+        backgroundColor: useCSV(theme.white, theme.colors.dark[7]),
         borderTopWidth: "1px",
         borderTopStyle: "solid",
-        borderTopColor:
-          theme.colorScheme === "dark"
-            ? theme.colors.dark[6]
-            : theme.colors.gray[2],
+        borderTopColor: useCSV(theme.colors.gray[2], theme.colors.dark[6]),
       })}
     >
       <Container size="xl" px="md" py="xs">

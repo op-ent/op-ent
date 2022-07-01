@@ -12,6 +12,7 @@ import { getCookie, setCookie } from "cookies-next";
 import { GetServerSidePropsContext } from "next";
 import { NotificationsProvider } from "@mantine/notifications";
 import Layout from "~/components/Layout/Layout";
+import { useCSV } from "~/hooks/useColorSchemeValue";
 
 function App({
   Component,
@@ -45,10 +46,10 @@ function App({
               colorScheme: theme.colorScheme,
             },
             body: {
-              backgroundColor:
-                theme.colorScheme === "dark"
-                  ? theme.colors.dark[8]
-                  : theme.colors.gray[0],
+              backgroundColor: useCSV(
+                theme.colors.gray[0],
+                theme.colors.dark[8]
+              ),
             },
           })}
         />

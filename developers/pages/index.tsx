@@ -43,9 +43,11 @@ export default function (props: PaperProps<"div">) {
       <Container size="xl" px="md" mt="xl">
         <Group direction="row" grow>
           <Box>
-            <Title order={1}>DEVELOPER PORTAL</Title>
-            <Text>Create and manage app accesses to open-dw.</Text>
-            <Text>
+            <Title order={1} mb="xl">
+              DEVELOPER PORTAL
+            </Title>
+            <Text mb="md">Create and manage app accesses to open-dw.</Text>
+            <Text color="dimmed">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
               laudantium necessitatibus, aut corporis voluptas magni vitae
               quibusdam earum tempore. Vero optio illo commodi ab ratione

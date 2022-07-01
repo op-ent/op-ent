@@ -10,14 +10,15 @@ import {
 import { showNotification } from "@mantine/notifications";
 import Link from "next/link";
 import { FiTerminal } from "react-icons/fi";
-import ColorModeSwitch from "~/components/ColorModeSwitch";
+import ColorModeSwitch from "~/components/ColorSchemeSwitch";
+import { useCSV } from "~/hooks/useColorSchemeValue";
 
 const useStyles = createStyles((theme) => ({
   logo: {
     ...theme.fn.focusStyles(),
     textDecoration: "none",
     userSelect: "none",
-    color: theme.colorScheme === "dark" ? theme.white : theme.black,
+    color: useCSV(theme.black, theme.white),
     borderRadius: theme.radius.md,
   },
 }));
@@ -29,14 +30,10 @@ export default function () {
     <Box
       component="header"
       sx={(theme) => ({
-        backgroundColor:
-          theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+        backgroundColor: useCSV(theme.white, theme.colors.dark[7]),
         borderBottomWidth: "1px",
         borderBottomStyle: "solid",
-        borderBottomColor:
-          theme.colorScheme === "dark"
-            ? theme.colors.dark[6]
-            : theme.colors.gray[2],
+        borderBottomColor: useCSV(theme.colors.gray[2], theme.colors.dark[6]),
       })}
     >
       <Container size="xl" px="md" py="xs">
