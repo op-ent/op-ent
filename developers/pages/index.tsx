@@ -15,6 +15,7 @@ import { useForm, zodResolver } from "@mantine/form";
 import Head from "next/head";
 import Link from "next/link";
 import { z } from "zod";
+import { useCSV } from "~/hooks/useColorSchemeValue";
 
 const schema = z.object({
   email: z.string().email({ message: "Invalid email" }),
@@ -40,69 +41,79 @@ export default function (props: PaperProps<"div">) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Container size="xl" px="md" mt="xl">
-        <Group direction="row" grow>
-          <Box>
-            <Title order={1} mb="xl">
-              DEVELOPER PORTAL
-            </Title>
-            <Text mb="md">Create and manage app accesses to open-dw.</Text>
-            <Text color="dimmed">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-              laudantium necessitatibus, aut corporis voluptas magni vitae
-              quibusdam earum tempore. Vero optio illo commodi ab ratione
-              delectus atque veritatis, esse accusantium pariatur itaque
-              obcaecati quibusdam dolore ea cum? Quas vel eaque, beatae,
-              mollitia sequi ipsum iure voluptatum repellendus molestias omnis
-              a?
-            </Text>
-          </Box>
-          <Paper radius="md" p="xl" withBorder {...props}>
-            <Title order={2} mb="lg">
-              LOGIN
-            </Title>
-            <form onSubmit={form.onSubmit(() => {})}>
-              <Group direction="column" grow>
-                <TextInput
-                  id="email"
-                  required
-                  label="Email"
-                  placeholder="hello@mantine.dev"
-                  value={form.values.email}
-                  onChange={(event) =>
-                    form.setFieldValue("email", event.currentTarget.value)
-                  }
-                  error={form.errors.email && "Invalid email"}
-                />
-                <PasswordInput
-                  id="password"
-                  required
-                  label="Password"
-                  placeholder="Your password"
-                  value={form.values.password}
-                  onChange={(event) =>
-                    form.setFieldValue("password", event.currentTarget.value)
-                  }
-                  error={
-                    form.errors.password &&
-                    "Password should include at least 6 characters"
-                  }
-                />
-              </Group>
-              <Group position="apart" mt="xl">
-                <Link href="#" passHref>
-                  <Anchor component="a" color="gray" size="xs">
-                    Don't have an account? Register
-                  </Anchor>
-                </Link>
-                <Button type="submit" uppercase>
-                  Login
-                </Button>
-              </Group>
-            </form>
-          </Paper>
-        </Group>
-      </Container>
+      <Box
+        sx={(theme) => ({
+          backgroundColor: useCSV(theme.colors.brand[6], theme.colors.brand[7]),
+        })}
+      >
+        <Container size="xl" px="md" py="xl">
+          <Group direction="row" grow>
+            <Box
+              sx={(theme) => ({
+                color: theme.white,
+              })}
+            >
+              <Title order={1} mb="xl">
+                DEVELOPER PORTAL
+              </Title>
+              <Text mb="md">Create and manage app accesses to open-dw.</Text>
+              <Text>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Doloribus laudantium necessitatibus, aut corporis voluptas magni
+                vitae quibusdam earum tempore. Vero optio illo commodi ab
+                ratione delectus atque veritatis, esse accusantium pariatur
+                itaque obcaecati quibusdam dolore ea cum? Quas vel eaque,
+                beatae, mollitia sequi ipsum iure voluptatum repellendus
+                molestias omnis a?
+              </Text>
+            </Box>
+            <Paper radius="md" p="xl" withBorder {...props}>
+              <Title order={2} mb="lg">
+                LOGIN
+              </Title>
+              <form onSubmit={form.onSubmit(() => {})}>
+                <Group direction="column" grow>
+                  <TextInput
+                    id="email"
+                    required
+                    label="Email"
+                    placeholder="hello@mantine.dev"
+                    value={form.values.email}
+                    onChange={(event) =>
+                      form.setFieldValue("email", event.currentTarget.value)
+                    }
+                    error={form.errors.email && "Invalid email"}
+                  />
+                  <PasswordInput
+                    id="password"
+                    required
+                    label="Password"
+                    placeholder="Your password"
+                    value={form.values.password}
+                    onChange={(event) =>
+                      form.setFieldValue("password", event.currentTarget.value)
+                    }
+                    error={
+                      form.errors.password &&
+                      "Password should include at least 6 characters"
+                    }
+                  />
+                </Group>
+                <Group position="apart" mt="xl">
+                  <Link href="#" passHref>
+                    <Anchor component="a" color="gray" size="xs">
+                      Don't have an account? Register
+                    </Anchor>
+                  </Link>
+                  <Button type="submit" uppercase>
+                    Login
+                  </Button>
+                </Group>
+              </form>
+            </Paper>
+          </Group>
+        </Container>
+      </Box>
     </>
   );
 }
