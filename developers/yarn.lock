@@ -1971,6 +1971,12 @@ once@^1.3.0:
   dependencies:
     wrappy "1"
 
+opent-js@../packages/opent-js:
+  version "0.0.1"
+  dependencies:
+    defu "^6.0.0"
+    ohmyfetch "^0.4.18"
+
 optionator@^0.9.1:
   version "0.9.1"
   resolved "https://registry.npmjs.org/optionator/-/optionator-0.9.1.tgz#4f236a6373dae0566a6d43e1326674f50c291499"
@@ -2492,9 +2498,9 @@ unbox-primitive@^1.0.2:
     which-boxed-primitive "^1.0.2"
 
 undici@^5.2.0:
-  version "5.5.1"
-  resolved "https://registry.npmjs.org/undici/-/undici-5.5.1.tgz#baaf25844a99eaa0b22e1ef8d205bffe587c8f43"
-  integrity sha512-MEvryPLf18HvlCbLSzCW0U00IMftKGI5udnjrQbC5D4P0Hodwffhv+iGfWuJwg16Y/TK11ZFK8i+BPVW2z/eAw==
+  version "5.6.0"
+  resolved "https://registry.npmjs.org/undici/-/undici-5.6.0.tgz#3fd695d4454970bae3d151326ee4ab645b8d1962"
+  integrity sha512-mc+8SY1fXubTrdx4CXDkeFFGV8lI3Tq4I/70U1V8Z6g4iscGII0uLO7CPnDt56bXEbvaKwo2T2+VrteWbZiXiQ==
 
 uri-js@^4.2.2:
   version "4.4.1"
