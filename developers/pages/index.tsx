@@ -56,7 +56,7 @@ export default function (props: PaperProps<"div">) {
               <Title order={1} mb="xl">
                 DEVELOPER PORTAL
               </Title>
-              <Text mb="md">Create and manage app accesses to open-dw.</Text>
+              <Text mb="md">Create and manage app accesses to op-ent.</Text>
               <Text>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Doloribus laudantium necessitatibus, aut corporis voluptas magni

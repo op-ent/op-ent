@@ -44,7 +44,7 @@ export default function () {
                 <FiTerminal size={35} />
                 <Stack spacing={0}>
                   <Text size="xl" weight="semibold">
-                    open-dw
+                    op-ent
                   </Text>
                   <Text size="sm" color="dimmed">
                     Developer portal
@@ -61,7 +61,7 @@ export default function () {
                   color: "yellow",
                   title: "Not implemented yet",
                   message:
-                    "open-dw is still in development and this feature is not yet implemented.",
+                    "op-ent is still in development and this feature is not yet implemented.",
                 })
               }
             >

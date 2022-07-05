@@ -1,7 +1,7 @@
 {
-  "name": "open-dw",
+  "name": "op-ent",
   "version": "1.0.0",
-  "repository": "https://github.com/open-dw/open-dw.git",
+  "repository": "https://github.com/op-ent/op-ent.git",
   "author": "Florian LEFEBVRE <contact@florian-lefebvre.dev>",
   "private": true,
   "scripts": {

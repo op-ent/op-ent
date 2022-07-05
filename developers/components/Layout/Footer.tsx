@@ -16,8 +16,7 @@ export default function () {
     >
       <Container size="xl" px="md" py="xs">
         <Text color="dimmed">
-          &copy; {new Date().getFullYear()} open-dw. All rights reserved. Made
-          by{" "}
+          &copy; {new Date().getFullYear()} op-ent. All rights reserved. Made by{" "}
           <Link href="https://florian-lefebvre.dev" passHref>
             <Anchor component="a" target="_blank">
               Florian LEFEBVRE
