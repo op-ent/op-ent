@@ -2,10 +2,23 @@
   "name": "opent-js",
   "version": "0.0.1",
   "description": "Official JavaScript client for op-ent",
-  "main": "src/index.ts",
+  "main": "dist/main/index.js",
+  "module": "dist/module/index.js",
+  "types": "dist/module/index.d.ts",
   "private": true,
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "yarn build:main && yarn build:module",
+    "build:main": "tsc -p tsconfig.json",
+    "build:module": "tsc -p tsconfig.module.json"
+  },
   "dependencies": {
-    "defu": "^6.0.0",
-    "ohmyfetch": "^0.4.18"
+    "axios": "^0.27.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
   }
 }

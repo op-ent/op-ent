@@ -1,47 +1,30 @@
-import { OpentClientOptions, OpentClientOpts } from "./lib/types";
-import { $fetch, FetchOptions } from "ohmyfetch";
-import { defu } from "defu";
+import { OpentClientOptions, OpentClientParams } from "./lib/types";
+import AuthClient from "./lib/AuthClient";
+import { BaseClient, stripTrailingSlash } from "./lib/helpers";
 
-export default class OpentClient {
-  protected readonly baseUrl: string;
-  protected readonly accessId: string;
-  protected readonly accessToken?: string;
+export default class OpentClient extends BaseClient<OpentClientParams> {
+  auth: AuthClient;
+
   protected readonly options: OpentClientOptions;
 
   protected DEFAULT_OPTIONS: OpentClientOptions = {};
 
-  protected fetch<T>(url: string, options?: FetchOptions<"json">) {
-    const _url = `${this.baseUrl}${url}`;
-
-    const DEFAULT_HEADERS: {
-      [key: string]: string;
-    } = {
-      "access-id": this.accessId,
-    };
-
-    if (this.accessToken) {
-      DEFAULT_HEADERS["access-token"] = this.accessToken;
-    }
-
-    const _options: FetchOptions<"json"> = defu(options || {}, {
-      headers: DEFAULT_HEADERS,
+  constructor(params: OpentClientParams) {
+    super({
+      ...params,
+      urlTransformer: (url) => `${stripTrailingSlash(url)}/api`,
     });
-    return $fetch<T>(_url, _options);
-  }
-
-  constructor(opts: OpentClientOpts) {
-    const { baseUrl, accessId, accessToken, options } = opts;
-    this.baseUrl = baseUrl;
-    this.accessId = accessId;
-    this.accessToken = accessToken;
+    const { options } = params;
     this.options = options || this.DEFAULT_OPTIONS;
+
+    this.auth = new AuthClient({ ...params, baseUrl: this.baseUrl });
   }
 
   public async getConsumers() {
-    return this.fetch("developers/app-consumers");
+    return this.axios.get<{}[]>("developers/app-consumers");
   }
 
   public async test() {
-    return this.fetch<{ hello: string }>("test");
+    return this.axios.get<{ hello: string }>("test");
   }
 }

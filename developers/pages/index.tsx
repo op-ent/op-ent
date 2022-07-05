@@ -12,10 +12,13 @@ import {
   Container,
 } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
+import { useToggle } from "@mantine/hooks";
 import Head from "next/head";
 import Link from "next/link";
+import { useState } from "react";
 import { z } from "zod";
 import { useCSV } from "~/hooks/useColorSchemeValue";
+import client from "~/lib/client";
 
 const schema = z.object({
   email: z.string().email({ message: "Invalid email" }),
@@ -32,6 +35,19 @@ export default function (props: PaperProps<"div">) {
       password: "",
     },
   });
+
+  const [loading, setLoading] = useState(false);
+
+  const testFetch = async () => {
+    setLoading(true);
+    try {
+      const { data } = await client.auth.login({ email: "", password: "" });
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
+    setLoading(false);
+  };
 
   return (
     <>
@@ -110,6 +126,9 @@ export default function (props: PaperProps<"div">) {
                   </Button>
                 </Group>
               </form>
+              <Button uppercase onClick={testFetch} loading={loading}>
+                TEST FETCH
+              </Button>
             </Paper>
           </Group>
         </Container>
