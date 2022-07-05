@@ -1,6 +1,6 @@
 import "~/styles/globals.css";
 import type { AppProps } from "next/app";
-import theme from "~/lib/theme";
+import { classNames, theme } from "~/lib/theme";
 import {
   ColorScheme,
   ColorSchemeProvider,
@@ -38,7 +38,9 @@ function App({
       <MantineProvider
         withNormalizeCSS
         withGlobalStyles
+        withCSSVariables
         theme={{ ...theme, colorScheme }}
+        classNames={classNames}
       >
         <Global
           styles={(theme) => ({

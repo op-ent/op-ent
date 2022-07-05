@@ -15,7 +15,7 @@ declare module "@mantine/core" {
 
 DEFAULT_THEME.colors.indigo;
 
-const theme: MantineThemeOverride = {
+export const theme: MantineThemeOverride = {
   colors: {
     brand: DEFAULT_THEME.colors.indigo,
   },
@@ -25,4 +25,4 @@ const theme: MantineThemeOverride = {
   headings: { fontFamily: "Outfit, sans-serif" },
 };
 
-export default theme;
+export const classNames: Record<string, Record<string, string>> = {};
