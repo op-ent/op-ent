@@ -1,7 +1,10 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class LogRequest {
-  public async handle({ request, response }: HttpContextContract, next: () => Promise<void>) {
+  public async handle(
+    { request, response, logger }: HttpContextContract,
+    next: () => Promise<void>
+  ) {
     const time = new Date()
     response.response.on('finish', () => {
       const formatOutput = ({
@@ -27,7 +30,7 @@ export default class LogRequest {
       const duration = new Date().getTime() - time.getTime()
       const statusCode = response.response.statusCode
 
-      console.log(
+      logger.info(
         formatOutput({ time: formattedTime, protocol, method, url, duration, statusCode })
       )
     })

@@ -11,7 +11,6 @@ export default class AppConsumerAuth {
       schema: schema.create({
         access_id: schema.string([rules.uuid({ version: 4 })]),
         access_token: schema.string.optional([rules.length(64)]),
-        // token: schema.string.optional([(value: string): boolean => value.length === 32]),
       }),
       data: {
         access_id,
