@@ -12,7 +12,6 @@ import {
   Container,
 } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
-import { useToggle } from "@mantine/hooks";
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
@@ -28,6 +27,8 @@ const schema = z.object({
 });
 
 export default function (props: PaperProps<"div">) {
+  let res;
+
   const form = useForm({
     schema: zodResolver(schema),
     initialValues: {
@@ -40,12 +41,11 @@ export default function (props: PaperProps<"div">) {
 
   const testFetch = async () => {
     setLoading(true);
-    try {
-      const { data } = await client.auth.login({ email: "", password: "" });
-      console.log(data);
-    } catch (e) {
-      console.log(e);
-    }
+    res = await client.auth.register({
+      email: "admin@admin.com",
+      password: "test",
+    });
+    console.log(res);
     setLoading(false);
   };
 
@@ -129,6 +129,7 @@ export default function (props: PaperProps<"div">) {
               <Button uppercase onClick={testFetch} loading={loading}>
                 TEST FETCH
               </Button>
+              {res && <pre>{JSON.stringify(res)}</pre>}
             </Paper>
           </Group>
         </Container>

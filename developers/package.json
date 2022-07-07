@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "upgrade:libs": "rimraf .next && yarn upgrade:libs:opent-js",
+    "upgrade:libs:opent-js": "yarn upgrade opent-js"
   },
   "dependencies": {
     "@emotion/react": "11",
@@ -33,6 +35,7 @@
     "eslint": "8.18.0",
     "eslint-config-next": "12.1.6",
     "lodash": "^4.17.21",
+    "rimraf": "^3.0.2",
     "typescript": "4.7.4"
   }
 }
