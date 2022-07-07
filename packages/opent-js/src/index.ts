@@ -1,10 +1,8 @@
-import { OpentClientParams } from "./lib/types";
-import OpentClient from "./OpentClient";
+import OpentClient from "./opentClient";
+import { Config } from "./types";
 
-export * from "./lib/types";
+export * from "./types";
 
-const createClient = (params: OpentClientParams) => {
-  return new OpentClient(params);
-};
+const createClient = (config: Config) => new OpentClient(config);
 
 export { createClient, OpentClient };

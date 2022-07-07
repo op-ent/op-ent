@@ -18,11 +18,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OpentClient = exports.createClient = void 0;
-const OpentClient_1 = __importDefault(require("./OpentClient"));
-exports.OpentClient = OpentClient_1.default;
-__exportStar(require("./lib/types"), exports);
-const createClient = (params) => {
-    return new OpentClient_1.default(params);
-};
+const opentClient_1 = __importDefault(require("./opentClient"));
+exports.OpentClient = opentClient_1.default;
+__exportStar(require("./types"), exports);
+const createClient = (config) => new opentClient_1.default(config);
 exports.createClient = createClient;
 //# sourceMappingURL=index.js.map

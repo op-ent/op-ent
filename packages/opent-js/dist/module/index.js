@@ -1,7 +1,5 @@
-import OpentClient from "./OpentClient";
-export * from "./lib/types";
-const createClient = (params) => {
-    return new OpentClient(params);
-};
+import OpentClient from "./opentClient";
+export * from "./types";
+const createClient = (config) => new OpentClient(config);
 export { createClient, OpentClient };
 //# sourceMappingURL=index.js.map
