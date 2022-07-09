@@ -38,8 +38,6 @@ function generateColors() {
     _colors[`${name}Auto`] = _map;
   }
 
-  console.log(_colors);
-
   return _colors;
 }
 
