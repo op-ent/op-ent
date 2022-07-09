@@ -38,7 +38,6 @@ function App({
       <MantineProvider
         withNormalizeCSS
         withGlobalStyles
-        withCSSVariables
         theme={{ ...theme, colorScheme }}
         classNames={classNames}
       >

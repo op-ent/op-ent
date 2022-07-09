@@ -49,6 +49,8 @@ export default function (props: PaperProps<"div">) {
     setLoading(false);
   };
 
+  const [dark, setDark] = useState(false);
+
   return (
     <>
       <Head>
@@ -134,6 +136,23 @@ export default function (props: PaperProps<"div">) {
           </Group>
         </Container>
       </Box>
+      <div className="flex">
+        <div className="w-10 h-10 bg-tomato-6"></div>
+        <div className="w-10 h-10 bg-tomatoDark-6"></div>
+        <div className="w-10 h-10 bg-tomatoAuto-6"></div>
+      </div>
+      <Button
+        onClick={() => {
+          setDark(!dark);
+          if (dark) {
+            document.getElementsByTagName("html")[0].classList.remove("dark");
+          } else {
+            document.getElementsByTagName("html")[0].classList.add("dark");
+          }
+        }}
+      >
+        Toggle dark: {dark ? "on" : "off"}
+      </Button>
     </>
   );
 }
