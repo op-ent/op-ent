@@ -137,7 +137,37 @@ export default function (props: PaperProps<"div">) {
           </Group>
         </Container>
       </Box>
-      {["tomato", "blue", "sky", "gray", "slate"].map((color) => (
+      {[
+        "tomato",
+        "red",
+        "crimson",
+        "pink",
+        "plum",
+        "purple",
+        "violet",
+        "indigo",
+        "indigo",
+        "blue",
+        "cyan",
+        "teal",
+        "green",
+        "grass",
+        "orange",
+        "brown",
+        "sky",
+        "mint",
+        "lime",
+        "yellow",
+        "amber",
+        "gray",
+        "mauve",
+        "slate",
+        "sage",
+        "olive",
+        "sand",
+        "gold",
+        "bronze",
+      ].map((color) => (
         <div key={color} className="flex space-x-2 m-4">
           <TempButton color={color}>Solid</TempButton>
           <TempButton color={color} variant="outline">
