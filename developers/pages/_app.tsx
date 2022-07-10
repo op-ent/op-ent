@@ -7,7 +7,7 @@ import {
   Global,
   MantineProvider,
 } from "@mantine/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getCookie, setCookie } from "cookies-next";
 import { GetServerSidePropsContext } from "next";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -29,6 +29,15 @@ function App({
       maxAge: 60 * 60 * 24 * 30,
     });
   };
+
+  useEffect(() => {
+    const htmlEl = document.getElementsByTagName("html")[0];
+    if (colorScheme === "light") {
+      htmlEl.classList.remove("dark");
+    } else {
+      htmlEl.classList.add("dark");
+    }
+  }, [colorScheme]);
 
   return (
     <ColorSchemeProvider

@@ -18,6 +18,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { useCSV } from "~/hooks/useColorSchemeValue";
 import client from "~/lib/client";
+import TempButton from "~/components/atoms/Button";
 
 const schema = z.object({
   email: z.string().email({ message: "Invalid email" }),
@@ -136,23 +137,17 @@ export default function (props: PaperProps<"div">) {
           </Group>
         </Container>
       </Box>
-      <div className="flex">
-        <div className="w-10 h-10 bg-tomato-6"></div>
-        <div className="w-10 h-10 bg-tomatoDark-6"></div>
-        <div className="w-10 h-10 bg-tomatoAuto-6"></div>
-      </div>
-      <Button
-        onClick={() => {
-          setDark(!dark);
-          if (dark) {
-            document.getElementsByTagName("html")[0].classList.remove("dark");
-          } else {
-            document.getElementsByTagName("html")[0].classList.add("dark");
-          }
-        }}
-      >
-        Toggle dark: {dark ? "on" : "off"}
-      </Button>
+      {["tomato", "blue", "sky", "gray", "slate"].map((color) => (
+        <div key={color} className="flex space-x-2 m-4">
+          <TempButton color={color}>Solid</TempButton>
+          <TempButton color={color} variant="outline">
+            Outline
+          </TempButton>
+          <TempButton color={color} variant="ghost">
+            Ghost
+          </TempButton>
+        </div>
+      ))}
     </>
   );
 }

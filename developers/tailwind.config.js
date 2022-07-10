@@ -49,7 +49,7 @@ module.exports = {
     "./lib/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    colors: generateColors(),
+    colors: { ...generateColors(), white: "white", black: "black" },
     extend: {},
   },
   plugins: [],
