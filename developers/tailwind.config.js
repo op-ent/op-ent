@@ -51,24 +51,6 @@ function range(size, startAt = 1) {
 }
 
 function generateColorsSafeList() {
-  // return {
-  //   pattern: new RegExp(
-  //     `(bg|text|border|ring)-(${colorsNames.join("|")})-(${range(12)
-  //       .map((i) => i.toString())
-  //       .join("|")})`
-  //   ),
-  //   variants: (() => {
-  //     const breakpoints = ["sm", "md", "lg", "xl", "2xl"];
-  //     const variants = ["hover", "focus"];
-  //     const output = [];
-  //     for (const b of breakpoints) {
-  //       for (const v of variants) {
-  //         output.push(`${b}:${v}`);
-  //       }
-  //     }
-  //     return output;
-  //   })(),
-  // };
   const breakpoints = ["sm", "md", "lg", "xl", "2xl"];
   const variants = ["hover", "focus"];
   const utilities = ["bg", "text", "border", "ring"];
