@@ -1,1 +1,0 @@
-{"version":3,"file":"opentClient.d.ts","sourceRoot":"","sources":["../../src/opentClient.ts"],"names":[],"mappings":"AACA,OAAO,YAAY,MAAM,kBAAkB,CAAC;AAC5C,OAAO,EAAE,MAAM,EAAE,MAAM,SAAS,CAAC;AAEjC,MAAM,CAAC,OAAO,OAAO,WAAW;IAC9B,OAAO,CAAC,MAAM,CAAS;IAEhB,IAAI,EAAE,YAAY,CAAC;gBAEd,MAAM,EAAE,MAAM;CAK3B"}
