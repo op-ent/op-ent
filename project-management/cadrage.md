@@ -8,6 +8,8 @@
 
 ### Définition de la cible
 
+Nous visons les élèves, les professeurs, l'administration, les établissements scolaires, les développeurs.
+
 ### Définition des objectifs
 
 ### Plan d'action
