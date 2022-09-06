@@ -6,6 +6,8 @@
 
 ### Identification des besoins
 
+- Parité avec les autres ENTs en terme de fonctionnalités
+
 ### Définition de la cible
 
 Nous visons les élèves, les professeurs, l'administration, les établissements scolaires, les développeurs.
@@ -15,6 +17,8 @@ Nous visons les élèves, les professeurs, l'administration, les établissements
 ### Plan d'action
 
 ## Questionnement de la cible
+
+> En attente de l'élaboration d'une enquête utilisateurs.
 
 ## Détails
 
