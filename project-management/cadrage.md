@@ -20,9 +20,9 @@
 
 - **Qui est responsable du projet ?** [Florian LEFEBVRE](https://github.com/florian-lefebvre).
 - **Quelle est l'origine du problème ?**
-- Qui est directement impacté ?
-- Qui est impacté ?
-- Qui contacter ?
+- **Qui est directement impacté ?** Elèves, professeurs, établissements scolaires (collèges, lycées, établissements de l'enseignement supérieur)
+- **Qui est impacté ?** Développeurs, ENTs existants (EcoleDirecte, Pronote par exemple)
+- **Qui contacter ?** contact@op-ent.fr
 
 ### Quel est le sujet ?
 
