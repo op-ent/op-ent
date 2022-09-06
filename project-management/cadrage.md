@@ -18,8 +18,8 @@
 
 ### Quelles sont les personnes concernées ?
 
-- Qui est responsable du projet ?
-- Quelle est l'origine du problème ?
+- **Qui est responsable du projet ?** [Florian LEFEBVRE](https://github.com/florian-lefebvre).
+- **Quelle est l'origine du problème ?**
 - Qui est directement impacté ?
 - Qui est impacté ?
 - Qui contacter ?
