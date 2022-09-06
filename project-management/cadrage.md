@@ -19,14 +19,14 @@
 ### Quelles sont les personnes concernées ?
 
 - **Qui est responsable du projet ?** [Florian LEFEBVRE](https://github.com/florian-lefebvre).
-- **Quelle est l'origine du problème ?**
+- **Quelle est l'origine du problème ?** Les ENTs ne sont pas réellement adaptés aux besoins des utilisateurs, et sont fermés.
 - **Qui est directement impacté ?** Elèves, professeurs, établissements scolaires (collèges, lycées, établissements de l'enseignement supérieur)
 - **Qui est impacté ?** Développeurs, ENTs existants (EcoleDirecte, Pronote par exemple)
 - **Qui contacter ?** contact@op-ent.fr
 
 ### Quel est le sujet ?
 
-- De quoi s'agit-il précisément ?
+- **De quoi s'agit-il précisément ?** Création d'un ENT open-source.
 - Quelle est la situation actuelle ?
 - Quelles en sont les conséquences ?
 - Quels sont les risques ?
