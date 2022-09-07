@@ -2,7 +2,7 @@
 
 ## Brief
 
-> TBD
+> ENT : Espace Numérique de Travail
 
 ## Etapes
 
@@ -49,7 +49,7 @@ Nous visons les élèves, les professeurs, l'administration, les établissements
 
 ### Où
 
-- **Où se situe le problème ? Pays, service, équipe etc...**
+- **Où se situe le problème ? Pays, service, équipe etc...** Nous visons la France (au sens large) et les ENTs.
 - **A quelle étape la difficulté apparait-elle ?**
 
 ### Quand
@@ -67,8 +67,8 @@ Nous visons les élèves, les professeurs, l'administration, les établissements
 
 ### Combien
 
-- **De combien de temps dispose-t-on pour résoudre le problème ?**
-- **De quel budget dispose-t-on ?**
+- **De combien de temps dispose-t-on pour résoudre le problème ?** Il n'y a aucune limite de temps, mais ce serait bien d'avoir un prototype (quelques modules) d'ici 6 mois.
+- **De quel budget dispose-t-on ?** 0€. Nous allons mettre en place un financement participatif (tipeee ou équivalent). L'accès à certains services est gratuit ou à prix réduits pour les projets open-source. De ce fait, op-ent en bénéficie. Si le financement participatif ne permet pas de payer les services, le responsable du projet le paiera.
 
 ### Pourquoi
 
