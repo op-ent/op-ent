@@ -6,7 +6,7 @@ This document describes the guidelines for the project. It is a living document 
 
 ## Contributing
 
-> TBD
+Before contributing to the project, please read the [Contributing Guidelines](./CONTRIBUTING.md).
 
 ## Project goals
 
@@ -91,4 +91,4 @@ The project doesn't require any legal status yet. However, when it will (i.e whe
 
 ## Project security
 
-We do not have any security policy yet. However, we really care about security and will set up a security policy as soon as possible. If you find any vulnerability, please contact us immediately without sharing not exploiting it.
+See [SECURITY.md](./SECURITY.md).
