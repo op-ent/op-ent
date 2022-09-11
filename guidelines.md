@@ -37,6 +37,18 @@ In all cases, commits and code (comments, variable names, etc.) must be written 
 
 ## Time management and planning
 
+Our plan is to work in epics of 10 weeks (approximately 2.5 months), divided in 5 sprints of 2 weeks. Each sprint will be followed by a retrospective and a planning session. The planning session will be used to plan the next sprint. The last sprint will be dedicated to bug fixes, experiments and defining the next epic.
+
+Here is a draft of the roadmap:
+
+- [ ] Initialization phase (08/08/2022 - 18/09/2022)
+- [ ] First epic (18/09/2022 - 27/11/2022). Will be defined during the last week of the initialization phase.
+- [ ] Second epic (27/11/2022 - 22/01/2023).
+
+And so on...
+
+Project management is achieved using GitHub Projects.
+
 ## Project management
 
 ## Project governance
