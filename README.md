@@ -9,4 +9,4 @@ Every document apply to the whole project, unless specified otherwise.
 
 ---
 
-[![Vercel banner](https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg)](https://vercel.com/?utm_source=op-ent&utm_campaign=oss)
+[![Netlify banner](https://www.netlify.com/v3/img/components/netlify-color-accent.svg)](https://www.netlify.com)
