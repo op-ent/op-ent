@@ -8,13 +8,20 @@ First off, thank you for considering contributing to op-ent. It's people like yo
 
 Following these guidelines helps to communicate that you respect the time of the developers managing and developing this open source project. In return, they should reciprocate that respect in addressing your issue, assessing changes, and helping you finalize your pull requests.
 
-### Explain what kinds of contributions you are looking for.
+### Contributions are more than welcome.
 
 Keep an open mind! Improving documentation, bug triaging, or writing tutorials are all examples of helpful contributions that mean less work for you.
 
-> Elasticsearch is an open source project and we love to receive contributions from our community — you! There are many ways to contribute, from writing tutorials or blog posts, improving the documentation, submitting bug reports and feature requests or writing code which can be incorporated into Elasticsearch itself.
+We are seeking contributors in the following domains:
 
-[source: [Elasticsearch](https://github.com/elastic/elasticsearch/blob/master/CONTRIBUTING.md)] **Need more inspiration?** [1] [Devise](https://github.com/plataformatec/devise/wiki/Contributing) [2] [Geocoder](https://github.com/alexreisner/geocoder#known-issues) (“known issues”)
+- Frontend developers
+- Backend developers
+- UI/UX designers
+- Content writers
+- Students, teachers and schools
+- Community managers
+- Video editors
+- Other...Feel free to contact us!
 
 ### Explain contributions you are NOT looking for (if any).
 
