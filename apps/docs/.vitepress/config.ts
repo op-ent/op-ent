@@ -1,15 +1,54 @@
 import { defineConfig } from "vitepress";
 
+export const isProduction =
+  process.env.NETLIFY && process.env.CONTEXT === "production";
+
+const META_URL = isProduction
+  ? "https://docs.op-ent.fr"
+  : "http://localhost:5173";
+const META_TITLE = "Documentation d'op-ent";
+const META_DESC = "op-ent est un ENT open-source.";
+const META_IMAGE = `${META_URL}/og.jpg`;
+
 // https://vitepress.vuejs.org/config/app-configs
 export default defineConfig({
   appearance: true,
-  title: "Documentation d'op-ent",
+  title: META_TITLE,
   titleTemplate: "op-ent. L'ENT open-source.",
   lang: "fr-FR",
   lastUpdated: true,
   cleanUrls: true,
   outDir: "./dist",
-  head: [["link", { rel: "icon", type: "image/svg+xml", href: "/logo.svg" }]],
+  head: [
+    ["meta", { name: "description", content: META_DESC }],
+    ["link", { rel: "icon", type: "image/svg+xml", href: "/logo.svg" }],
+    ["meta", { property: "og:url", content: META_URL }],
+    ["meta", { property: "og:description", content: META_DESC }],
+    ["meta", { property: "twitter:url", content: META_URL }],
+    ["meta", { property: "twitter:title", content: META_TITLE }],
+    ["meta", { property: "twitter:description", content: META_DESC }],
+    [
+      "meta",
+      {
+        property: "og:type",
+        content: "website",
+      },
+    ],
+    [
+      "meta",
+      {
+        property: "twitter:card",
+        content: "summary_large_image",
+      },
+    ],
+    [
+      "meta",
+      {
+        property: "twitter:image",
+        content: META_IMAGE,
+      },
+    ],
+  ],
   themeConfig: {
     siteTitle: false,
     logo: "/logo.svg",
