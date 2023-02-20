@@ -1,5 +1,6 @@
 {
   "name": "op-ent",
   "version": "1.0.0",
-  "author": "Florian LEFEBVRE"
+  "author": "Florian LEFEBVRE",
+  "license": "GPL-3.0"
 }

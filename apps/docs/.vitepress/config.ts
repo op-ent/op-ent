@@ -8,12 +8,7 @@ export default defineConfig({
   lang: "fr-FR",
   lastUpdated: true,
   outDir: "./dist",
-  head: [
-    [
-      "link",
-      { rel: "shortcut icon", type: "image/svg+xml", href: "/logo.svg" },
-    ],
-  ],
+  head: [["link", { rel: "icon", type: "image/svg+xml", href: "/logo.svg" }]],
   themeConfig: {
     siteTitle: false,
     logo: "/logo.svg",
