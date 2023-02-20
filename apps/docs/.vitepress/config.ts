@@ -7,6 +7,7 @@ export default defineConfig({
   titleTemplate: "op-ent. L'ENT open-source.",
   lang: "fr-FR",
   lastUpdated: true,
+  cleanUrls: true,
   outDir: "./dist",
   head: [["link", { rel: "icon", type: "image/svg+xml", href: "/logo.svg" }]],
   themeConfig: {
