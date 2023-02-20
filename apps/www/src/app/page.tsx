@@ -10,12 +10,20 @@ export default function Home() {
         <p className="text-slate-400 font-medium text-2xl">
           L{"'"}ENT open-source
         </p>
-        <a
-          href="https://github.com/op-ent/op-ent"
-          className="text-white underline text-lg focus:outline-none focus:ring-2 focus:ring-slate-600"
-        >
-          GitHub
-        </a>
+        <div className="flex space-x-4">
+          <a
+            href="https://github.com/op-ent/op-ent"
+            className="text-white underline text-lg focus:outline-none focus:ring-2 focus:ring-slate-600"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://docs.op-ent.fr"
+            className="text-white underline text-lg focus:outline-none focus:ring-2 focus:ring-slate-600"
+          >
+            Documentation
+          </a>
+        </div>
       </div>
     </div>
   );
