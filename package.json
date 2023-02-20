@@ -2,5 +2,9 @@
   "name": "op-ent",
   "version": "1.0.0",
   "author": "Florian LEFEBVRE",
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "scripts": {
+    "docs:dev": "pnpm --filter docs dev",
+    "www:dev": "pnpm --filter www dev"
+  }
 }
