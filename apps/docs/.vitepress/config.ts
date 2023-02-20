@@ -15,10 +15,15 @@ export default defineConfig({
     logo: "/logo.svg",
     socialLinks: [
       {
+        icon: "discord",
+        link: "https://discord.gg/kMFmfSbC2C",
+      },
+      {
         icon: "github",
         link: "https://github.com/op-ent/op-ent",
       },
     ],
+    lastUpdatedText: "Dernière mise à jour ",
     editLink: {
       pattern: "https://github.com/op-ent/op-ent/edit/main/apps/docs/:path",
       text: "Suggérer des modifications",
@@ -29,12 +34,12 @@ export default defineConfig({
     },
     nav: [
       {
-        text: "Accueil",
-        link: "/",
+        text: "Démarrage",
+        link: "/demarrage/introduction",
       },
       {
-        text: "Contribuer",
-        link: "/contribuer",
+        text: "Communauté",
+        link: "/communaute/",
       },
       {
         text: "Site web",
@@ -42,15 +47,36 @@ export default defineConfig({
       },
     ],
     sidebar: {
-      "/": [
+      "/demarrage": [
+        {
+          text: "Introduction",
+          link: "/demarrage/introduction",
+        },
+      ],
+      "/communaute": [
+        {
+          text: "Communauté",
+          link: "/communaute/",
+        },
+        {
+          text: "Obtenir de l'aide",
+          link: "/communaute/obtenir-de-l-aide",
+        },
+        {
+          text: "Signaler un bug",
+          link: "/communaute/signaler-un-bug",
+        },
         {
           text: "Contribuer",
-          items: [
-            {
-              text: "Introduction",
-              link: "/",
-            },
-          ],
+          link: "/communaute/contribuer",
+        },
+        {
+          text: "Structure",
+          link: "/communaute/structure",
+        },
+        {
+          text: "Feuille de route",
+          link: "/communaute/feuille-de-route",
         },
       ],
     },
