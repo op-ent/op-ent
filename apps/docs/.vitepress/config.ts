@@ -73,8 +73,8 @@ export default defineConfig({
     },
     nav: [
       {
-        text: "Démarrage",
-        link: "/demarrage/introduction",
+        text: "Introduction",
+        link: "/",
       },
       {
         text: "Communauté",
@@ -86,12 +86,6 @@ export default defineConfig({
       },
     ],
     sidebar: {
-      "/demarrage": [
-        {
-          text: "Introduction",
-          link: "/demarrage/introduction",
-        },
-      ],
       "/communaute": [
         {
           text: "Communauté",
@@ -116,6 +110,12 @@ export default defineConfig({
         {
           text: "Feuille de route",
           link: "/communaute/feuille-de-route",
+        },
+      ],
+      "/": [
+        {
+          text: "Introduction",
+          link: "/",
         },
       ],
     },
