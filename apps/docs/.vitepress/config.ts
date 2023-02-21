@@ -50,7 +50,7 @@ export default defineConfig({
     ],
   ],
   themeConfig: {
-    siteTitle: false,
+    siteTitle: "op-ent",
     logo: "/logo.svg",
     socialLinks: [
       {
@@ -73,8 +73,12 @@ export default defineConfig({
     },
     nav: [
       {
-        text: "Introduction",
+        text: "Accueil",
         link: "/",
+      },
+      {
+        text: "A propos",
+        link: "/a-propos",
       },
       {
         text: "Communauté",
@@ -114,12 +118,6 @@ export default defineConfig({
         {
           text: "Releases",
           link: "https://github.com/op-ent/op-ent/releases",
-        },
-      ],
-      "/": [
-        {
-          text: "Introduction",
-          link: "/",
         },
       ],
     },

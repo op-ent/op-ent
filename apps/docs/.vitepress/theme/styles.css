@@ -1,9 +1,24 @@
-.link {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
+:root {
+  /* --vp-c-brand-lightest: #92a7ef !important;
+  --vp-c-brand-light: #3c61dd !important; */
+  --vp-c-brand-lighter: #6684e5 !important;
+  --vp-c-brand: #3c61dd !important;
+  --vp-c-brand-dark: #193899 !important;
+  --vp-c-brand-darker: #10286e !important;
+  /* --vp-c-brand-darkest: #061845 !important; */
+}
+
+.dark:root {
+  --vp-c-brand: #6684e5 !important;
+  --vp-c-brand-dark: #92a7ef !important;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+.link {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
 }
