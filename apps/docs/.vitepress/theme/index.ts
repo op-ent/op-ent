@@ -1,6 +1,6 @@
-import "./styles.css";
-import defaultTheme from "vitepress/theme";
+import './styles.css'
+import defaultTheme from 'vitepress/theme'
 
 export default {
-  ...defaultTheme,
-};
+  ...defaultTheme
+}

@@ -1,12 +1,5 @@
-export default {
-  extends: ['plugin:adonis/typescriptApp', 'prettier'],
-  plugins: ['prettier'],
-  rules: {
-    'prettier/prettier': ['error'],
-  },
-  parserOptions: {
-    project: 'tsconfig.json',
-    tsconfigRootDir: __dirname,
-    sourceType: 'module',
-  },
+/** @type {import('eslint').Linter.Config} */
+module.exports = {
+  root: true,
+  extends: ['plugin:adonis/typescriptApp', 'shared'],
 }

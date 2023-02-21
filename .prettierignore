@@ -1,0 +1,9 @@
+build
+node_modules
+dist
+.next
+cache
+deps
+.cache
+.netlify
+pnpm-lock.yaml

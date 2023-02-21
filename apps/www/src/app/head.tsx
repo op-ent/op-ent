@@ -6,5 +6,5 @@ export default function Head() {
       <meta name="description" content="L'ENT open-source." />
       <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     </>
-  );
+  )
 }
