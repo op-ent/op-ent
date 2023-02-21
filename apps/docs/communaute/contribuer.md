@@ -1,4 +1,4 @@
-# Contribuer
+# Contribuer <Badge type="warning" text="WIP" />
 
 op-ent est un projet communautaire : nous aimons les contributions de toutes sortes !
 

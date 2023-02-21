@@ -1,4 +1,4 @@
-# Structure
+# Structure <Badge type="warning" text="WIP" />
 
 lorem ipsum
 

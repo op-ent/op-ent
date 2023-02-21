@@ -4,14 +4,15 @@ op-ent repose entièrement sur les contributions de la communauté pour se déve
 
 ## L'histoire du projet
 
-- Start: august 2022
-- Kind of dead until February 2023 lol
+Tout commencer en août 2022, lorsque [Florian LEFEBVRE](https://github.com/florian-lefebvre) lance le projet. Et le laisse plus ou moins en suspens jusqu'en février 2023 😬...
 
-Rien de fou pour l'instant mais c'est prêt pour le futur
+Malgré ce démarrage douteux, le projet reprend bel et bien !
+
+_Le projet n'a pas réellement d'histoire pour le moment, mais ça ne saurait tarder !_
 
 ## Rejoindre l'aventure
 
+- [Obtenir de l'aide](/communaute/obtenir-de-l-aide)
+- [Signaler un bug](/communaute/signaler-un-bug)
 - [Comment contribuer ?](/communaute/contribuer)
 - [Découvez notre feuille de route](/communaute/feuille-de-route)
-- [Signaler un bug](/communaute/signaler-un-bug)
-- [Obtenir de l'aide](/communaute/obtenir-de-l-aide)
