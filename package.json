@@ -6,6 +6,9 @@
   "license": "GPL-3.0",
   "scripts": {
     "prepare": "husky install",
+    "preinstall": "npx only-allow pnpm",
+    "commit": "cz",
+    "nx": "nx",
     "docs:dev": "pnpm --filter docs dev",
     "www:dev": "pnpm --filter www dev",
     "api:dev": "pnpm --filter api dev",
@@ -16,9 +19,14 @@
     "lint:all": "nx run-many --parallel --all --target=lint"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.2",
     "nx": "^15.7.2",
+    "only-allow": "^1.1.1",
     "prettier": "^2.8.4"
   },
   "engines": {
@@ -27,5 +35,10 @@
   "packageManager": "pnpm@7.27.1",
   "lint-staged": {
     "apps|packages/**/**": "pnpm lint"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
