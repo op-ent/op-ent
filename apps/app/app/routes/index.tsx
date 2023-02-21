@@ -1,3 +1,5 @@
+import { Button } from 'shared-ui'
+
 export default function Index() {
   return (
     <div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}>
@@ -27,6 +29,7 @@ export default function Index() {
           </a>
         </li>
       </ul>
+      <Button onClick={() => alert('clicked')}>Button !</Button>
     </div>
   )
 }

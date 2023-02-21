@@ -75,6 +75,7 @@ importers:
       eslint-config-shared: workspace:*
       react: ^18.2.0
       react-dom: ^18.2.0
+      shared-ui: workspace:*
       typescript: ^4.8.4
     dependencies:
       '@netlify/functions': 1.4.0
@@ -84,6 +85,7 @@ importers:
       cross-env: 7.0.3
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      shared-ui: link:../../packages/shared-ui
     devDependencies:
       '@remix-run/dev': 1.13.0_@remix-run+serve@1.13.0
       '@remix-run/eslint-config': 1.13.0_km5ddj7uwb23cqeymeyvzjsfb4
@@ -152,6 +154,26 @@ importers:
       eslint-config-prettier: 8.6.0_eslint@8.34.0
       eslint-plugin-prettier: 4.2.1_u5wnrdwibbfomslmnramz52buy
       prettier: 2.8.4
+
+  packages/shared-ui:
+    specifiers:
+      '@types/react': ^18.0.28
+      '@types/react-dom': ^18.0.11
+      eslint: ^8.34.0
+      eslint-config-shared: workspace:*
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      tsconfig-shared: workspace:*
+      typescript: ^4.9.5
+    devDependencies:
+      '@types/react': 18.0.28
+      '@types/react-dom': 18.0.11
+      eslint: 8.34.0
+      eslint-config-shared: link:../eslint-config-shared
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tsconfig-shared: link:../tsconfig-shared
+      typescript: 4.9.5
 
   packages/tsconfig-shared:
     specifiers: {}
@@ -10191,7 +10213,6 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
-    dev: false
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -10603,7 +10624,6 @@ packages:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
       loose-envify: 1.4.0
-    dev: false
 
   /secure-json-parse/2.7.0:
     resolution: {integrity: sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==}
