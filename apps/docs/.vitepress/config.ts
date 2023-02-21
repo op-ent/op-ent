@@ -111,6 +111,10 @@ export default defineConfig({
           text: "Feuille de route",
           link: "/communaute/feuille-de-route",
         },
+        {
+          text: "Releases",
+          link: "https://github.com/op-ent/op-ent/releases",
+        },
       ],
       "/": [
         {
