@@ -5,6 +5,7 @@
   "license": "GPL-3.0",
   "scripts": {
     "docs:dev": "pnpm --filter docs dev",
-    "www:dev": "pnpm --filter www dev"
+    "www:dev": "pnpm --filter www dev",
+    "api:dev": "pnpm --filter api dev"
   }
 }
