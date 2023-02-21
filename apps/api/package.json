@@ -3,28 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "ace": "node ace",
     "dev": "node ace serve --watch",
     "build": "node ace build --production",
     "start": "node server.js",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write ."
   },
-  "eslintConfig": {
-    "extends": [
-      "plugin:adonis/typescriptApp",
-      "prettier"
-    ],
-    "plugins": [
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "error"
-      ]
-    }
-  },
   "eslintIgnore": [
-    "build"
+    "build",
+    ".eslintrc.js"
   ],
   "prettier": {
     "trailingComma": "es5",
@@ -40,6 +28,7 @@
     "@adonisjs/assembler": "^5.9.5",
     "@japa/preset-adonis": "^1.2.0",
     "@japa/runner": "^2.5.0",
+    "@types/node": "18.14.0",
     "@types/proxy-addr": "^2.0.0",
     "@types/source-map-support": "^0.5.6",
     "adonis-preset-ts": "^2.1.0",
@@ -55,7 +44,10 @@
   },
   "dependencies": {
     "@adonisjs/core": "^5.8.0",
+    "@adonisjs/lucid": "^18.3.0",
     "@adonisjs/repl": "^3.1.0",
+    "luxon": "^3.2.1",
+    "pg": "^8.9.0",
     "proxy-addr": "^2.0.7",
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.21"
