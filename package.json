@@ -7,6 +7,7 @@
     "docs:dev": "pnpm --filter docs dev",
     "www:dev": "pnpm --filter www dev",
     "api:dev": "pnpm --filter api dev",
-    "api:ace": "pnpm --filter api ace"
+    "api:ace": "pnpm --filter api ace",
+    "app:dev": "pnpm --filter app dev"
   }
 }
