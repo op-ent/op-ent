@@ -7,3 +7,4 @@ deps
 .cache
 .netlify
 pnpm-lock.yaml
+.husky

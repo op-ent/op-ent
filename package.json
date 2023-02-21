@@ -5,21 +5,30 @@
   "author": "Florian LEFEBVRE",
   "license": "GPL-3.0",
   "scripts": {
+    "prepare": "husky install",
     "docs:dev": "pnpm --filter docs dev",
     "www:dev": "pnpm --filter www dev",
     "api:dev": "pnpm --filter api dev",
     "api:ace": "pnpm --filter api ace",
     "app:dev": "pnpm --filter app dev",
     "lint": "pnpm lint:all && pnpm format",
-    "format": "prettier --check .",
+    "format": "prettier --ignore-path .prettierignore --write",
     "lint:all": "nx run-many --parallel --all --target=lint"
   },
   "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.2",
     "nx": "^15.7.2",
     "prettier": "^2.8.4"
   },
   "engines": {
     "node": ">=16.15.0"
   },
-  "packageManager": "pnpm@7.27.1"
+  "packageManager": "pnpm@7.27.1",
+  "lint-staged": {
+    "**/*": [
+      "pnpm format",
+      "eslint ."
+    ]
+  }
 }
