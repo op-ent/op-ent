@@ -1,7 +1,9 @@
 {
   "name": "api",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "private": true,
+  "main": "./export.ts",
+  "types": "./export.ts",
   "scripts": {
     "ace": "node ace",
     "dev": "node ace serve --watch",
@@ -42,6 +44,7 @@
     "youch-terminal": "^2.2.0"
   },
   "dependencies": {
+    "@adonisjs/auth": "^8.2.3",
     "@adonisjs/core": "^5.8.0",
     "@adonisjs/lucid": "^18.3.0",
     "@adonisjs/redis": "^7.3.2",

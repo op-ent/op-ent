@@ -17,7 +17,7 @@
     "app:dev": "pnpm --filter app dev",
     "lint": "pnpm lint:all && pnpm format",
     "format": "prettier --write .",
-    "lint:all": "nx run-many --parallel --all --target=lint"
+    "lint:all": "nx run-many --parallel --all --target=lint --fix"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.4",
@@ -35,7 +35,7 @@
   },
   "packageManager": "pnpm@7.27.1",
   "lint-staged": {
-    "apps|packages/**/**": "pnpm lint"
+    "**/*": "pnpm lint"
   },
   "config": {
     "commitizen": {

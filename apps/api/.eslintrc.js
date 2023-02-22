@@ -2,5 +2,9 @@
 module.exports = {
   root: true,
   extends: ['plugin:adonis/typescriptApp', 'shared'],
-  project: path.join(__dirname, 'tsconfig.json'),
+  parserOptions: {
+    project: 'tsconfig.json',
+    tsconfigRootDir: __dirname,
+    sourceType: 'module',
+  },
 }

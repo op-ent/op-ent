@@ -10,7 +10,7 @@ services:
       POSTGRES_USER: ${PG_USER}
       POSTGRES_PASSWORD: ${PG_PASSWORD}
     ports:
-      - "${PG_PORT}:5432"
+      - '${PG_PORT}:5432'
 
   redis:
     container_name: redis
@@ -28,9 +28,9 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: password
     ports:
-      - "5050:80"
+      - '5050:80'
     links:
-      - "postgres:pgsql-server"
+      - 'postgres:pgsql-server'
     volumes:
       - ./pgadmin-servers.json:/pgadmin4/servers.json
 
@@ -42,4 +42,4 @@ services:
     ports:
       - '8001:8001'
     links:
-      - "redis:redis-server"
+      - 'redis:redis-server'
