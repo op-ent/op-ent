@@ -2,8 +2,6 @@
   "name": "api",
   "version": "0.0.1",
   "private": true,
-  "main": "./export.ts",
-  "types": "./export.ts",
   "scripts": {
     "ace": "node ace",
     "dev": "node ace serve --watch",

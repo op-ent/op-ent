@@ -6,8 +6,12 @@ module.exports = {
       ? './server.js'
       : undefined,
   serverBuildPath: '.netlify/functions-internal/server.js',
-  serverDependenciesToBundle: ['shared-ui'],
-  watchPaths: ['node_modules/shared-ui', 'remix.config.js'],
+  serverDependenciesToBundle: ['shared-ui', 'client', 'ofetch'],
+  watchPaths: [
+    'node_modules/shared-ui',
+    'node_modules/client',
+    'remix.config.js'
+  ],
   future: {
     v2_routeConvention: true
   },

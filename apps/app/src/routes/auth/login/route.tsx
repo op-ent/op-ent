@@ -1,10 +1,10 @@
 import { json, type ActionArgs, type LoaderArgs } from '@remix-run/node'
-import { Form, useLoaderData } from '@remix-run/react'
-import { authenticator } from '~/services/auth.server'
-import { getSession } from '~/services/session.server'
+import { Form, useActionData } from '@remix-run/react'
+import { AuthorizationError } from 'remix-auth'
+import { login, withAuth } from '~/services/auth.server'
 
 export default function Login() {
-  const { error } = useLoaderData<typeof loader>()
+  const error = useActionData<typeof action>()
 
   return (
     <Form method="post">
@@ -15,7 +15,7 @@ export default function Login() {
           type="email"
           name="email"
           id="email"
-          defaultValue="user@domain.tld"
+          defaultValue="test@test.com"
         />
       </div>
 
@@ -25,7 +25,7 @@ export default function Login() {
           type="password"
           name="password"
           id="password"
-          defaultValue="test"
+          defaultValue="123456"
         />
       </div>
 
@@ -35,17 +35,19 @@ export default function Login() {
 }
 
 export async function action({ request }: ActionArgs) {
-  await authenticator.authenticate('form', request, {
-    successRedirect: '/dashboard',
-    failureRedirect: '/auth/login'
-  })
+  const formData = await request.clone().formData()
+  try {
+    await login(request, formData)
+  } catch (error) {
+    if (error instanceof AuthorizationError) {
+      return json(JSON.parse(error.message))
+    }
+    await login(request, formData, false)
+  }
+  return null
 }
 
 export async function loader({ request }: LoaderArgs) {
-  await authenticator.isAuthenticated(request, {
-    successRedirect: '/dashboard'
-  })
-  const session = await getSession(request.headers.get('Cookie'))
-  const error = session.get(authenticator.sessionErrorKey)
-  return json({ error })
+  await withAuth(request, { success: true })
+  return json({})
 }
