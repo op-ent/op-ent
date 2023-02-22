@@ -6,14 +6,21 @@ module.exports = {
       ? './server.js'
       : undefined,
   serverBuildPath: '.netlify/functions-internal/server.js',
-  serverDependenciesToBundle: ['shared-ui', 'client', 'ofetch'],
+  serverDependenciesToBundle: [
+    'shared-ui',
+    'client',
+    'ofetch',
+    'node-fetch-native'
+  ],
   watchPaths: [
     'node_modules/shared-ui',
     'node_modules/client',
-    'remix.config.js'
+    'remix.config.js',
+    'tailwind.config.js'
   ],
   future: {
-    v2_routeConvention: true
+    v2_routeConvention: true,
+    unstable_tailwind: true
   },
   appDirectory: 'src'
   // assetsBuildDirectory: "public/build",

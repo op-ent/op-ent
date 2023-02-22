@@ -1,6 +1,7 @@
 import { json, type ActionArgs, type LoaderArgs } from '@remix-run/node'
 import { Form, useActionData } from '@remix-run/react'
 import { AuthorizationError } from 'remix-auth'
+import { Button } from 'shared-ui'
 import { login, withAuth } from '~/services/auth.server'
 
 export default function Login() {
@@ -29,7 +30,9 @@ export default function Login() {
         />
       </div>
 
-      <button>Log In</button>
+      <Button color="primary" variant="solid" type="submit">
+        Log In
+      </Button>
     </Form>
   )
 }

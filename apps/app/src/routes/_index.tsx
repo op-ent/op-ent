@@ -1,13 +1,16 @@
 import { type LoaderArgs, type ActionArgs } from '@remix-run/node'
 import { Form } from '@remix-run/react'
 import { logout, withAuth } from '~/services/auth.server'
+import { Button } from 'shared-ui'
 
 export default function Index() {
   return (
-    <div>
-      <h1>Home</h1>
+    <div className="p-4">
+      <h1 className="text-5xl font-bold mb-10">Home</h1>
       <Form method="post">
-        <button>Log out</button>
+        <Button color="danger" variant="solid" size="lg" type="submit">
+          Log out
+        </Button>
       </Form>
     </div>
   )
