@@ -8,7 +8,7 @@ export default function Login() {
   const error = useActionData<typeof action>()
 
   return (
-    <Form method="post">
+    <Form method="post" className="p-4">
       {error && <pre>{JSON.stringify(error, null, 2)}</pre>}
       <div>
         <label htmlFor="email">Email</label>
