@@ -55,7 +55,8 @@ export default class AuthController {
 
     try {
       const { token } = await auth.use('api').attempt(email, password)
-      return { token }
+      const user = await User.findBy('email', email)!
+      return { user, token }
     } catch {
       return response.unauthorized({ errors: [{ message: 'Invalid credentials' }] })
     }

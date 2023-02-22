@@ -2,13 +2,15 @@ import { Authenticator, AuthorizationError } from 'remix-auth'
 import { sessionStorage } from '~/services/session.server'
 import { FormStrategy } from 'remix-auth-form'
 import { client } from './client'
-import { type AuthToken } from 'client'
 import invariant from 'tiny-invariant'
+import type Client from 'client/lib/client'
 
 export const FORM_STRATEGY_KEY = 'form'
 export const FAILURE_REDIRECT_PATH = '/auth/login'
 
-export const auth = new Authenticator<{ token: AuthToken }>(sessionStorage)
+export const auth = new Authenticator<
+  NonNullable<Awaited<ReturnType<Client['auth']['login']>>['data']>
+>(sessionStorage)
 
 auth.use(
   new FormStrategy(async ({ form }) => {
