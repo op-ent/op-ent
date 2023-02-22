@@ -17,6 +17,8 @@
     "cross-env": "^7.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "remix-auth": "^3.4.0",
+    "remix-auth-form": "^1.3.0",
     "shared-ui": "workspace:*"
   },
   "devDependencies": {

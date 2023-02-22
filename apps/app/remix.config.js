@@ -7,8 +7,11 @@ module.exports = {
       : undefined,
   serverBuildPath: '.netlify/functions-internal/server.js',
   serverDependenciesToBundle: ['shared-ui'],
-  watchPaths: ['node_modules/shared-ui', 'remix.config.js']
-  // appDirectory: "app",
+  watchPaths: ['node_modules/shared-ui', 'remix.config.js'],
+  future: {
+    v2_routeConvention: true
+  },
+  appDirectory: 'src'
   // assetsBuildDirectory: "public/build",
   // publicPath: "/build/",
 }

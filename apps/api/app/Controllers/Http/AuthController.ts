@@ -29,7 +29,7 @@ export default class AuthController {
 
     const existingUser = await User.findBy('email', email)
     if (existingUser) {
-      return response.forbidden({ error: 'User already exists with this email' })
+      return response.forbidden({ errors: [{ message: 'User already exists with this email' }] })
     }
 
     const user = await User.create({ email, password })
@@ -57,7 +57,7 @@ export default class AuthController {
       const { token } = await auth.use('api').attempt(email, password)
       return { token }
     } catch {
-      return response.unauthorized({ error: 'Invalid credentials' })
+      return response.unauthorized({ errors: [{ message: 'Invalid credentials' }] })
     }
   }
 }
