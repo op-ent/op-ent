@@ -13,10 +13,6 @@
     "lint": "eslint .",
     "format": "prettier --write ."
   },
-  "eslintIgnore": [
-    "build",
-    ".eslintrc.js"
-  ],
   "prettier": {
     "trailingComma": "es5",
     "semi": false,

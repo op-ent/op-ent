@@ -20,6 +20,11 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async () => {
-  return { hello: 'world' }
+Route.get('/', () => {
+  return 'API de op-ent. Read more on https://docs.op-ent.fr.'
 })
+
+Route.group(() => {
+  Route.post('login', 'AuthController.login')
+  Route.post('register', 'AuthController.register')
+}).prefix('auth')

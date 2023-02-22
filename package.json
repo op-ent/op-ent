@@ -25,7 +25,6 @@
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^8.0.3",
-    "lint-staged": "^13.1.2",
     "nx": "^15.7.2",
     "only-allow": "^1.1.1",
     "prettier": "^2.8.4"
@@ -34,9 +33,6 @@
     "node": ">=16.15.0"
   },
   "packageManager": "pnpm@7.27.1",
-  "lint-staged": {
-    "**/*": "pnpm lint"
-  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"

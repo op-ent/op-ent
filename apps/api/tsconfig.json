@@ -4,6 +4,7 @@
   "exclude": ["node_modules", "build"],
   "compilerOptions": {
     "outDir": "build",
+    "baseUrl": ".",
     "rootDir": "./",
     "sourceMap": true,
     "paths": {
