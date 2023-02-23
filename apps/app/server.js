@@ -27,7 +27,7 @@ function getLoadContext(event, context) {
   const loadContext = {
     clientNetlifyGraphAccessToken: rawAuthorizationString,
     netlifyGraphToken: netlifyGraphToken,
-    netlifyGraphSignature: graphSignatureHeader
+    netlifyGraphSignature: graphSignatureHeader,
   }
 
   // Remove keys with undefined values
@@ -43,5 +43,5 @@ function getLoadContext(event, context) {
 export const handler = createRequestHandler({
   build,
   getLoadContext,
-  mode: process.env.NODE_ENV
+  mode: process.env.NODE_ENV,
 })

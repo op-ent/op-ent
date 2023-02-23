@@ -9,6 +9,6 @@ export default defineConfig([
     dts: true,
     format: ['esm', 'cjs'],
     minify: true,
-    treeshake: true
-  }
+    treeshake: true,
+  },
 ])

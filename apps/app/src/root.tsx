@@ -6,7 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
   useLocation,
-  useOutlet
+  useOutlet,
 } from '@remix-run/react'
 import styles from './tailwind.css'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -53,7 +53,7 @@ const darkModeScript = `
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
   title: 'New Remix App',
-  viewport: 'width=device-width,initial-scale=1'
+  viewport: 'width=device-width,initial-scale=1',
 })
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
@@ -70,7 +70,7 @@ export default function App() {
       </head>
       <body className="h-full bg-neutral-50 dark:bg-neutral-800">
         <button
-          className="text-black dark:text-white font-bold fixed top-4 right-4"
+          className="fixed top-4 right-4 font-bold text-black dark:text-white"
           onClick={() => {
             const theme = document.documentElement.getAttribute('data-theme')
             document.documentElement.setAttribute(

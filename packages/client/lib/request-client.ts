@@ -23,11 +23,11 @@ export type Headers = Record<string, string>
 export default class RequestClient {
   private config: Required<Config>
   private DEFAULT_CONFIG: Required<Config> = {
-    baseUrl: 'https://api.op-ent.fr'
+    baseUrl: 'https://api.op-ent.fr',
   }
   private DEFAULT_HEADERS: Headers = {
     Accept: 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   }
   private apiFetch: $Fetch
 
@@ -53,7 +53,7 @@ export default class RequestClient {
       data = await this.apiFetch<T>(path, {
         method,
         body,
-        headers: { ...this.DEFAULT_HEADERS, ...headers }
+        headers: { ...this.DEFAULT_HEADERS, ...headers },
       })
     } catch (err) {
       error = err as any

@@ -12,7 +12,7 @@ export default class AuthResource extends BaseResource {
       path,
       {
         email,
-        password
+        password,
       }
     )
     if (!res.error) {

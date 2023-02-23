@@ -40,7 +40,7 @@ export async function withAuth(
 ) {
   return await auth.isAuthenticated(request, {
     successRedirect: success && '/',
-    failureRedirect: failure && FAILURE_REDIRECT_PATH
+    failureRedirect: failure && FAILURE_REDIRECT_PATH,
   } as any)
 }
 
@@ -56,6 +56,6 @@ export async function login(
   return await auth.authenticate(FORM_STRATEGY_KEY, request, {
     successRedirect: '/',
     throwOnError,
-    context: { formData }
+    context: { formData },
   })
 }

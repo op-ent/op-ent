@@ -6,9 +6,9 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
-        endOfLine: 'auto'
-      }
-    ]
+        endOfLine: 'auto',
+      },
+    ],
   },
-  ignorePatterns: ['dist/**']
+  ignorePatterns: ['dist/**'],
 }

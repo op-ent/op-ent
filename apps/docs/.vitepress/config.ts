@@ -31,23 +31,23 @@ export default defineConfig({
       'meta',
       {
         property: 'og:type',
-        content: 'website'
-      }
+        content: 'website',
+      },
     ],
     [
       'meta',
       {
         property: 'twitter:card',
-        content: 'summary_large_image'
-      }
+        content: 'summary_large_image',
+      },
     ],
     [
       'meta',
       {
         property: 'twitter:image',
-        content: META_IMAGE
-      }
-    ]
+        content: META_IMAGE,
+      },
+    ],
   ],
   themeConfig: {
     siteTitle: 'op-ent',
@@ -55,71 +55,71 @@ export default defineConfig({
     socialLinks: [
       {
         icon: 'discord',
-        link: 'https://discord.gg/kMFmfSbC2C'
+        link: 'https://discord.gg/kMFmfSbC2C',
       },
       {
         icon: 'github',
-        link: 'https://github.com/op-ent/op-ent'
-      }
+        link: 'https://github.com/op-ent/op-ent',
+      },
     ],
     lastUpdatedText: 'Dernière mise à jour ',
     editLink: {
       pattern: 'https://github.com/op-ent/op-ent/edit/main/apps/docs/:path',
-      text: 'Suggérer des modifications'
+      text: 'Suggérer des modifications',
     },
     footer: {
       copyright: 'Copyright © 2022-present Florian LEFEBVRE',
-      message: 'Diffusé sous la licence GNU GPLv3.'
+      message: 'Diffusé sous la licence GNU GPLv3.',
     },
     nav: [
       {
         text: 'Accueil',
-        link: '/'
+        link: '/',
       },
       {
         text: 'A propos',
-        link: '/a-propos'
+        link: '/a-propos',
       },
       {
         text: 'Communauté',
-        link: '/communaute/'
+        link: '/communaute/',
       },
       {
         text: 'Site web',
-        link: 'https://op-ent.fr'
-      }
+        link: 'https://op-ent.fr',
+      },
     ],
     sidebar: {
       '/communaute': [
         {
           text: 'Communauté',
-          link: '/communaute/'
+          link: '/communaute/',
         },
         {
           text: "Obtenir de l'aide",
-          link: '/communaute/obtenir-de-l-aide'
+          link: '/communaute/obtenir-de-l-aide',
         },
         {
           text: 'Signaler un bug',
-          link: '/communaute/signaler-un-bug'
+          link: '/communaute/signaler-un-bug',
         },
         {
           text: 'Contribuer',
-          link: '/communaute/contribuer'
+          link: '/communaute/contribuer',
         },
         {
           text: 'Structure',
-          link: '/communaute/structure'
+          link: '/communaute/structure',
         },
         {
           text: 'Feuille de route',
-          link: '/communaute/feuille-de-route'
+          link: '/communaute/feuille-de-route',
         },
         {
           text: 'Releases',
-          link: 'https://github.com/op-ent/op-ent/releases'
-        }
-      ]
-    }
-  }
+          link: 'https://github.com/op-ent/op-ent/releases',
+        },
+      ],
+    },
+  },
 })

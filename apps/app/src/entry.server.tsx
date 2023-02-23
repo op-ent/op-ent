@@ -16,6 +16,6 @@ export default function handleRequest(
 
   return new Response('<!DOCTYPE html>' + markup, {
     headers: responseHeaders,
-    status: responseStatusCode
+    status: responseStatusCode,
   })
 }
