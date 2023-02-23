@@ -14,9 +14,38 @@ export default function Index() {
       </p>
       <Form method="post">
         <Button color="danger" variant="solid" size="lg" type="submit">
-          Log out
+          Déconnexion
         </Button>
       </Form>
+      <div className="mt-4">
+        {(
+          [
+            'primary',
+            'neutral',
+            'danger',
+            'warning',
+            'success',
+            'info',
+          ] as const
+        ).map((color) => (
+          <div key={color} className="mt-6 flex items-center space-x-6">
+            {(['solid', 'outline', 'subtle'] as const).map((variant) => (
+              <div key={variant} className="mt-2 flex items-center space-x-6">
+                {(['xs', 'sm', 'md', 'lg', 'xl'] as const).map((size) => (
+                  <Button
+                    key={size}
+                    color={color}
+                    variant={variant}
+                    size={size}
+                  >
+                    Button
+                  </Button>
+                ))}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

@@ -10,6 +10,7 @@ import {
 } from '@remix-run/react'
 import styles from './tailwind.css'
 import { AnimatePresence, motion } from 'framer-motion'
+import ThemeSelector from './components/molecules/ThemeSelector'
 
 const darkModeScript = `
 
@@ -56,7 +57,13 @@ export const meta: MetaFunction = () => ({
   viewport: 'width=device-width,initial-scale=1',
 })
 
-export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: styles },
+  {
+    rel: 'stylesheet',
+    href: 'https://rsms.me/inter/inter.css',
+  },
+]
 
 export default function App() {
   const location = useLocation()
@@ -69,25 +76,15 @@ export default function App() {
         <script dangerouslySetInnerHTML={{ __html: darkModeScript }}></script>
       </head>
       <body className="h-full bg-neutral-50 dark:bg-neutral-800">
-        <button
-          className="fixed top-4 right-4 font-bold text-black dark:text-white"
-          onClick={() => {
-            const theme = document.documentElement.getAttribute('data-theme')
-            document.documentElement.setAttribute(
-              'data-theme',
-              theme === 'light' ? 'dark' : 'light'
-            )
-          }}
-        >
-          COLOR MODE
-        </button>
+        <ThemeSelector className="fixed top-4 right-4 z-30" />
         <AnimatePresence mode="wait" initial={false}>
           <motion.main
             key={location.pathname}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
             transition={{ duration: 0.15, ease: 'easeInOut' }}
+            className="h-full"
           >
             {outlet}
           </motion.main>

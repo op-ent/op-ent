@@ -10,5 +10,6 @@ export default defineConfig([
     format: ['esm', 'cjs'],
     minify: true,
     treeshake: true,
+    external: ['react'],
   },
 ])

@@ -13,8 +13,9 @@ module.exports = {
     'node-fetch-native',
   ],
   watchPaths: [
-    'node_modules/shared-ui',
+    'node_modules/shared-ui/dist',
     'node_modules/client',
+    'node_modules/tailwind-shared',
     'remix.config.js',
     'tailwind.config.js',
   ],

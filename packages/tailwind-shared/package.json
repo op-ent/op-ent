@@ -1,0 +1,11 @@
+{
+  "name": "tailwind-shared",
+  "version": "1.0.0",
+  "files": [
+    "tailwind.config.js"
+  ],
+  "dependencies": {
+    "@tailwindcss/forms": "^0.5.3",
+    "tailwindcss": "^3.2.7"
+  }
+}
