@@ -10,19 +10,19 @@ module.exports = {
     'shared-ui',
     'client',
     'ofetch',
-    'node-fetch-native'
+    'node-fetch-native',
   ],
   watchPaths: [
     'node_modules/shared-ui',
     'node_modules/client',
     'remix.config.js',
-    'tailwind.config.js'
+    'tailwind.config.js',
   ],
   future: {
     v2_routeConvention: true,
-    unstable_tailwind: true
+    unstable_tailwind: true,
   },
-  appDirectory: 'src'
+  appDirectory: 'src',
   // assetsBuildDirectory: "public/build",
   // publicPath: "/build/",
 }

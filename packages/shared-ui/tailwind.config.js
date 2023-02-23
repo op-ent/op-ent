@@ -1,8 +1,1 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ['./lib/**/*.{ts,tsx,jsx,js}'],
-  theme: {
-    extend: {}
-  },
-  plugins: []
-}
+module.exports = require('./dist/index.cjs').preset

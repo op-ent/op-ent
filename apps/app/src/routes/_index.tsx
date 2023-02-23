@@ -8,8 +8,8 @@ export default function Index() {
   const data = useLoaderData<typeof loader>()
   return (
     <div className="p-4">
-      <h1 className="text-5xl font-bold mb-2">Home</h1>
-      <p className="text-lg text-neutral-600 mb-5">
+      <h1 className="mb-2 text-5xl font-bold">Home</h1>
+      <p className="mb-5 text-lg text-neutral-600">
         {data?.session.data.user.user.email}
       </p>
       <Form method="post">

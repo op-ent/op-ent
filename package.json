@@ -15,6 +15,7 @@
     "api:docker:dev": "pnpm --filter api docker:dev",
     "api:ace": "pnpm --filter api ace",
     "app:dev": "pnpm --filter app dev",
+    "shared-ui:dev": "pnpm --filter shared-ui dev",
     "lint": "pnpm lint:all && pnpm format",
     "format": "prettier --write .",
     "lint:all": "nx run-many --parallel --all --target=lint --fix"
@@ -27,7 +28,8 @@
     "husky": "^8.0.3",
     "nx": "^15.7.2",
     "only-allow": "^1.1.1",
-    "prettier": "^2.8.4"
+    "prettier": "^2.8.4",
+    "prettier-plugin-tailwindcss": "^0.2.3"
   },
   "engines": {
     "node": ">=16.15.0"
