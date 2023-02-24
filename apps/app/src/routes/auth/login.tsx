@@ -1,19 +1,16 @@
-import { json, type ActionArgs, type LoaderArgs } from '@remix-run/node'
 import {
-  Form,
-  Link,
-  useActionData,
-  useSubmit,
-  useTransition,
-} from '@remix-run/react'
+  json,
+  V2_MetaFunction,
+  type ActionArgs,
+  type LoaderArgs,
+} from '@remix-run/node'
+import { Form, Link, useActionData, useTransition } from '@remix-run/react'
 import { AuthorizationError } from 'remix-auth'
 import { Alert, Button, Input, ResizablePanel } from 'shared-ui'
 import { login, withAuth } from '~/services/auth.server'
-import { useForm } from 'react-hook-form'
 import { z, type ZodError } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useRef } from 'react'
 import { capitalize } from '~/utils/primitives'
+import useFormHandler from '~/hooks/use-form-handler'
 
 type CustomError = {
   field?: string
@@ -32,24 +29,13 @@ const schema = z.object({
     .min(6, { message: '6 caractères minimum' }),
 })
 
-type Schema = z.infer<typeof schema>
-
 export default function Login() {
   const transition = useTransition()
   const actionData = useActionData<CustomError | null>()
 
   const loading = transition.state !== 'idle'
 
-  const formRef = useRef(null)
-  const submit = useSubmit()
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Schema>({
-    resolver: zodResolver(schema),
-    shouldUseNativeValidation: false,
-  })
+  const { ref, handleSubmit, register, errors } = useFormHandler(schema)
 
   return (
     <>
@@ -74,8 +60,8 @@ export default function Login() {
       </div>
       <Form
         method="post"
-        ref={formRef}
-        onSubmit={handleSubmit((data) => submit(formRef.current))}
+        ref={ref}
+        onSubmit={handleSubmit}
         className="mx-auto grid w-full max-w-md grid-cols-1 gap-6 rounded-2xl border border-neutral-200 bg-white p-8 pt-2 shadow-md dark:border-neutral-700 dark:bg-neutral-900"
       >
         <ResizablePanel>
@@ -122,6 +108,8 @@ export default function Login() {
     </>
   )
 }
+
+export const meta: V2_MetaFunction = () => [{ title: 'Connexion' }]
 
 export async function action({ request }: ActionArgs) {
   const formData = await request.clone().formData()

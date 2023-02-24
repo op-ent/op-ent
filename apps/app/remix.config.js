@@ -21,6 +21,7 @@ module.exports = {
   ],
   future: {
     v2_routeConvention: true,
+    v2_meta: true,
     unstable_tailwind: true,
   },
   appDirectory: 'src',
