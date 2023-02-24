@@ -66,35 +66,24 @@ export const Input: InputComponent = forwardRef(
     const Component = as as React.ElementType
 
     return (
-      <div className={wrapperStyles()}>
-        <label htmlFor={id} className={labelStyles()}>
-          {label}
-        </label>
-        <Component
-          ref={ref}
-          id={id}
-          className={inputStyles({ className })}
-          {...inputProps}
-        />
+      <div>
+        <div className={wrapperStyles()}>
+          <label htmlFor={id} className={labelStyles()}>
+            {label}
+          </label>
+          <Component
+            ref={ref}
+            id={id}
+            className={inputStyles({ className })}
+            {...inputProps}
+          />
+        </div>
+        {hasError && (
+          <div role="alert" className={errorStyles()} id={`${id}-error`}>
+            {error}
+          </div>
+        )}
       </div>
-      // <div>
-      //   <div className={wrapperStyles()}>
-      //     <label htmlFor={id} className={labelStyles()}>
-      //       {label}
-      //     </label>
-      //     <Component
-      //       ref={ref}
-      //       id={id}
-      //       className={inputStyles({ className })}
-      //       {...inputProps}
-      //     />
-      //   </div>
-      //   {hasError && (
-      //     <div role="alert" className={errorStyles()} id={`${id}-error`}>
-      //       {error}
-      //     </div>
-      //   )}
-      // </div>
     )
   }
 )

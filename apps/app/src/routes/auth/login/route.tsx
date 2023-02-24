@@ -79,17 +79,17 @@ export default function Login() {
           type="text"
           placeholder="exemple@gmail.com"
           // defaultValue="test@test.com"
-          // error={errors.email?.message}
+          error={errors.email?.message}
           {...register('email')}
         />
-        {/*<Input
+        <Input
           label="Mot de passe"
           type="password"
           placeholder="••••••••"
           // defaultValue="123456"
           error={errors.password?.message}
           {...register('password')}
-        /> */}
+        />
         <Button
           color="primary"
           variant="solid"
