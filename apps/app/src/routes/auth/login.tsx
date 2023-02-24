@@ -1,9 +1,5 @@
-import {
-  json,
-  V2_MetaFunction,
-  type ActionArgs,
-  type LoaderArgs,
-} from '@remix-run/node'
+import type { V2_MetaFunction } from '@remix-run/node'
+import { json, type ActionArgs, type LoaderArgs } from '@remix-run/node'
 import { Form, Link, useActionData, useTransition } from '@remix-run/react'
 import { AuthorizationError } from 'remix-auth'
 import { Alert, Button, Input, ResizablePanel } from 'shared-ui'
