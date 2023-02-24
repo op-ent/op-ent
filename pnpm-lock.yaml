@@ -96,6 +96,7 @@ importers:
       eslint: ^8.27.0
       eslint-config-shared: workspace:*
       framer-motion: ^9.0.7
+      isbot: ^3.6.6
       lucide-react: ^0.115.0
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -119,6 +120,7 @@ importers:
       clsx: 1.2.1
       cross-env: 7.0.3
       framer-motion: 9.0.7_biqbaboplfbrettd7655fr4n2y
+      isbot: 3.6.6
       lucide-react: 0.115.0_react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -10126,6 +10128,11 @@ packages:
   /isarray/2.0.5:
     resolution: {integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==}
     dev: true
+
+  /isbot/3.6.6:
+    resolution: {integrity: sha512-98aGl1Spbx1led422YFrusDJ4ZutSNOymb2avZ2V4BCCjF3MqAF2k+J2zoaLYahubaFkb+3UyvbVDVlk/Ngrew==}
+    engines: {node: '>=12'}
+    dev: false
 
   /isexe/2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
