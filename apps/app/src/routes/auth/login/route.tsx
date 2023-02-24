@@ -11,7 +11,7 @@ import { Button, Input } from 'shared-ui'
 import { login, withAuth } from '~/services/auth.server'
 import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import { z, type ZodError } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRef } from 'react'
 
@@ -20,7 +20,10 @@ const schema = z.object({
     .string()
     .min(1, { message: 'Champ obligatoire' })
     .email({ message: 'Email invalide' }),
-  password: z.string().min(6, { message: '6 caractères minimum' }),
+  password: z
+    .string()
+    .min(1, { message: 'Champ obligatoire' })
+    .min(6, { message: '6 caractères minimum' }),
 })
 
 type Schema = z.infer<typeof schema>
@@ -43,7 +46,7 @@ export default function Login() {
   })
 
   return (
-    <div className="flex h-full flex-col items-center justify-center">
+    <div className="flex min-h-full flex-col items-center justify-center py-16">
       <div>
         <img
           src="/logo.svg"
@@ -66,7 +69,7 @@ export default function Login() {
       <Form
         method="post"
         ref={formRef}
-        onSubmit={handleSubmit((data) => submit(formRef.current))}
+        // onSubmit={handleSubmit((data) => submit(formRef.current))}
         className="mx-auto grid w-full max-w-md grid-cols-1 gap-6 rounded-2xl border border-neutral-200 bg-white p-8 shadow-md dark:border-neutral-700 dark:bg-neutral-900"
       >
         {actionErrors && (
@@ -78,7 +81,6 @@ export default function Login() {
           label="Adresse email"
           type="text"
           placeholder="exemple@gmail.com"
-          // defaultValue="test@test.com"
           error={errors.email?.message}
           {...register('email')}
         />
@@ -86,7 +88,6 @@ export default function Login() {
           label="Mot de passe"
           type="password"
           placeholder="••••••••"
-          // defaultValue="123456"
           error={errors.password?.message}
           {...register('password')}
         />
@@ -108,6 +109,17 @@ export default function Login() {
 
 export async function action({ request }: ActionArgs) {
   const formData = await request.clone().formData()
+  try {
+    schema.parse(Object.fromEntries(formData))
+  } catch (err: unknown) {
+    return json({
+      errors: (err as ZodError).issues.map((e) => ({
+        field: e.path[0],
+        message: e.message,
+      })),
+    })
+  }
+
   try {
     await login(request, formData)
   } catch (error) {

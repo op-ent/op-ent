@@ -5,7 +5,7 @@ import { ComponentProps, PolymorphicRef } from '../types/polymorphic'
 
 const styles = tv({
   base: [
-    'inline-flex items-center justify-center border-2 border-transparent rounded-md font-medium transition-colors select-none',
+    'inline-flex items-center justify-center border-2 border-transparent rounded-md font-medium transition-all select-none',
     'active:scale-95',
     'focus:outline-none focus:ring focus:ring-offset-2 focus:z-10',
     'focus:ring-offset-white dark:focus:ring-offset-neutral-900',
@@ -74,7 +74,7 @@ const styles = tv({
       variant: 'outline',
       color: 'primary',
       className:
-        'bg-primary-50 border-primary-300 hover:border-primary-400 hover:bg-primary-100 focus:ring-primary-300 text-primary-700 dark:bg-primary-800 dark:border-primary-600 dark:hover:border-primary-500 dark:hover:bg-primary-700 dark:focus:ring-primary-600 dark:text-primary-200',
+        'bg-primary-50 border-primary-300 hover:border-primary-400 hover:bg-primary-100 focus:ring-primary-300 text-primary-700 dark:bg-primary-900 dark:border-primary-600 dark:hover:border-primary-500 dark:hover:bg-primary-800 dark:focus:ring-primary-600 dark:text-primary-100',
     },
     {
       variant: 'outline',
@@ -86,25 +86,25 @@ const styles = tv({
       variant: 'outline',
       color: 'danger',
       className:
-        'bg-danger-50 border-danger-300 hover:border-danger-400 hover:bg-danger-100 focus:ring-danger-300 text-danger-700 dark:bg-danger-800 dark:border-danger-600 dark:hover:border-danger-500 dark:hover:bg-danger-900 dark:focus:ring-danger-600 dark:text-danger-100',
+        'bg-danger-50 border-danger-300 hover:border-danger-400 hover:bg-danger-100 focus:ring-danger-300 text-danger-700 dark:bg-danger-900 dark:border-danger-600 dark:hover:border-danger-500 dark:hover:bg-danger-800 dark:focus:ring-danger-600 dark:text-danger-100',
     },
     {
       variant: 'outline',
       color: 'warning',
       className:
-        'bg-warning-50 border-warning-300 hover:border-warning-400 hover:bg-warning-100 focus:ring-warning-300 text-warning-700 dark:bg-warning-800 dark:border-warning-600 dark:hover:border-warning-500 dark:hover:bg-warning-900 dark:focus:ring-warning-600 dark:text-warning-100',
+        'bg-warning-50 border-warning-300 hover:border-warning-400 hover:bg-warning-100 focus:ring-warning-300 text-warning-700 dark:bg-warning-900 dark:border-warning-600 dark:hover:border-warning-500 dark:hover:bg-warning-800 dark:focus:ring-warning-600 dark:text-warning-100',
     },
     {
       variant: 'outline',
       color: 'success',
       className:
-        'bg-success-50 border-success-300 hover:border-success-400 hover:bg-success-100 focus:ring-success-300 text-success-700 dark:bg-success-800 dark:border-success-600 dark:hover:border-success-500 dark:hover:bg-success-900 dark:focus:ring-success-600 dark:text-success-100',
+        'bg-success-50 border-success-300 hover:border-success-400 hover:bg-success-100 focus:ring-success-300 text-success-700 dark:bg-success-900 dark:border-success-600 dark:hover:border-success-500 dark:hover:bg-success-800 dark:focus:ring-success-600 dark:text-success-100',
     },
     {
       variant: 'outline',
       color: 'info',
       className:
-        'bg-info-50 border-info-300 hover:border-info-400 hover:bg-info-100 focus:ring-info-300 text-info-700 dark:bg-info-800 dark:border-info-600 dark:hover:border-info-500 dark:hover:bg-info-900 dark:focus:ring-info-600 dark:text-info-100',
+        'bg-info-50 border-info-300 hover:border-info-400 hover:bg-info-100 focus:ring-info-300 text-info-700 dark:bg-info-900 dark:border-info-600 dark:hover:border-info-500 dark:hover:bg-info-800 dark:focus:ring-info-600 dark:text-info-100',
     },
     {
       variant: 'subtle',

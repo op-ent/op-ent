@@ -1,6 +1,7 @@
 import React, { forwardRef, useId } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
 import { ComponentProps, PolymorphicRef } from '../types/polymorphic'
+import { ResizablePanel } from './ResizablePanel'
 
 const styles = tv({
   slots: {
@@ -8,7 +9,7 @@ const styles = tv({
       'focus-within:border-transparent focus-within:ring focus-within:ring-primary-300 dark:focus-within:ring-primary-600',
       'border border-neutral-200 dark:border-neutral-700',
       'bg-neutral-50 dark:bg-neutral-800',
-      'rounded-md px-3 pt-2 pb-1 shadow-sm',
+      'rounded-md px-3 pt-2 pb-1 shadow-sm transition-all',
     ],
     label:
       'block text-xs font-medium select-none text-neutral-500 dark:text-neutral-400',
@@ -19,15 +20,18 @@ const styles = tv({
     ],
     error: 'text-danger-600 mt-2 text-sm',
   },
+  variants: {
+    hasError: {
+      true: {
+        wrapper:
+          'border-transparent ring-2 ring-danger-300 dark:ring-danger-600',
+      },
+    },
+  },
+  defaultVariants: {
+    hasError: false,
+  },
 })
-// variants: {
-//   error: {
-//     wrapper: 'ring-danger-300 dark:ring-primary-600',
-//   },
-// },
-// defaultVariants: {
-//   error: false,
-// },
 
 type InputVariants = VariantProps<typeof styles>
 
@@ -56,13 +60,12 @@ export const Input: InputComponent = forwardRef(
       ...inputProps
     } = props
     const hasError = error !== undefined
-    // const { wrapper, label, input } = styles({ error: error !== undefined })
     const {
       wrapper: wrapperStyles,
       label: labelStyles,
       input: inputStyles,
       error: errorStyles,
-    } = styles()
+    } = styles({ hasError })
     const Component = as as React.ElementType
 
     return (
@@ -78,11 +81,16 @@ export const Input: InputComponent = forwardRef(
             {...inputProps}
           />
         </div>
-        {hasError && (
-          <div role="alert" className={errorStyles()} id={`${id}-error`}>
-            {error}
-          </div>
-        )}
+        <ResizablePanel>
+          <p
+            role="alert"
+            hidden={!hasError}
+            aria-hidden={!hasError}
+            className={errorStyles()}
+          >
+            {error || ''}
+          </p>
+        </ResizablePanel>
       </div>
     )
   }
