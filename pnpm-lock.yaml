@@ -227,6 +227,7 @@ importers:
       eslint: ^8.34.0
       eslint-config-shared: workspace:*
       framer-motion: ^9.0.7
+      lucide-react: ^0.115.0
       react: ^18.2.0
       react-aria: ^3.22.0
       react-dom: ^18.2.0
@@ -238,6 +239,7 @@ importers:
     dependencies:
       '@headlessui/react': 1.7.11_biqbaboplfbrettd7655fr4n2y
       framer-motion: 9.0.7_biqbaboplfbrettd7655fr4n2y
+      lucide-react: 0.115.0_react@18.2.0
       react-aria: 3.22.0_biqbaboplfbrettd7655fr4n2y
       react-use-measure: 2.1.1_biqbaboplfbrettd7655fr4n2y
       tailwind-variants: 0.0.30_tailwindcss@3.2.7

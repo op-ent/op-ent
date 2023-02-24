@@ -1,16 +1,18 @@
-import type { MetaFunction, LinksFunction } from '@remix-run/node'
+import {
+  type MetaFunction,
+  type LinksFunction,
+  type LoaderArgs,
+  redirect,
+} from '@remix-run/node'
 import {
   Links,
   LiveReload,
   Meta,
+  Outlet,
   Scripts,
   ScrollRestoration,
-  useLocation,
-  useOutlet,
 } from '@remix-run/react'
 import styles from './tailwind.css'
-import { AnimatePresence, motion } from 'framer-motion'
-import ThemeSelector from './components/molecules/ThemeSelector'
 
 const darkModeScript = `
 
@@ -65,34 +67,31 @@ export const links: LinksFunction = () => [
   },
 ]
 
-export default function App() {
-  const location = useLocation()
-  const outlet = useOutlet()
+export default function RootLayout() {
   return (
-    <html lang="en" className="h-full">
+    <html lang="fr-FR" className="h-full">
       <head>
         <Meta />
         <Links />
         <script dangerouslySetInnerHTML={{ __html: darkModeScript }}></script>
       </head>
       <body className="h-full bg-neutral-50 dark:bg-neutral-800">
-        <ThemeSelector className="fixed top-4 right-4 z-30" />
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.main
-            key={location.pathname}
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.15, ease: 'easeInOut' }}
-            className="h-full"
-          >
-            {outlet}
-          </motion.main>
-        </AnimatePresence>
+        <Outlet />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
       </body>
     </html>
   )
+}
+
+// Always remove trailing slash
+export function loader({ request: { url } }: LoaderArgs) {
+  const parsedUrl = new URL(url)
+  const path = parsedUrl.pathname
+  if (path.length > 1 && /\/$/.test(path)) {
+    const newPath = path.slice(0, -1) + parsedUrl.search + parsedUrl.hash
+    return redirect(newPath)
+  }
+  return null
 }

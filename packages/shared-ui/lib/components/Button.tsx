@@ -1,3 +1,4 @@
+import { Loader2 } from 'lucide-react'
 import React, { forwardRef, useRef } from 'react'
 import { useButton } from 'react-aria'
 import { tv, type VariantProps } from 'tailwind-variants'
@@ -155,22 +156,16 @@ type ButtonVariants = VariantProps<typeof styles>
 export interface ButtonProps extends ButtonVariants {
   as?: React.ElementType
   children?: React.ReactNode
-}
-
-type Props<C extends React.ElementType> = Omit<
-  ComponentProps<C, ButtonProps>,
-  'disabled'
-> & {
-  isDisabled?: boolean
+  loading?: boolean
 }
 
 type ButtonComponent = <C extends React.ElementType = 'button'>(
-  props: Props<C>
+  props: ComponentProps<C, ButtonProps>
 ) => React.ReactElement | null
 
 export const Button: ButtonComponent = forwardRef(
   <C extends React.ElementType = 'button'>(
-    props: Props<C>,
+    props: ComponentProps<C, ButtonProps>,
     ref?: PolymorphicRef<C>
   ) => {
     const _ref = useRef(null)
@@ -178,13 +173,18 @@ export const Button: ButtonComponent = forwardRef(
     const {
       as = 'button',
       children,
+      loading = false,
+      disabled,
       className,
       color,
       size,
       variant,
       ...rest
     } = props
-    const { buttonProps } = useButton({ ...rest, elementType: as }, newRef)
+    const { buttonProps } = useButton(
+      { ...rest, isDisabled: disabled || loading, elementType: as },
+      newRef
+    )
     const Component = as as React.ElementType
 
     return (
@@ -193,6 +193,7 @@ export const Button: ButtonComponent = forwardRef(
         {...buttonProps}
         className={styles({ color, size, variant, className })}
       >
+        {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         {children}
       </Component>
     )

@@ -36,7 +36,10 @@ export function ResizablePanel({
               transition: { duration: duration / 2 },
             }}
           >
-            <div ref={ref} className={`${height ? 'absolute' : 'relative'}`}>
+            <div
+              ref={ref}
+              className={`${height ? 'absolute w-full' : 'relative'}`}
+            >
               {children}
             </div>
           </motion.div>

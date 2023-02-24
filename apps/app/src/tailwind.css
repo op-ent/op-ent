@@ -8,4 +8,5 @@ html {
 
 html.dark {
   @apply selection:text-black;
+  color-scheme: dark;
 }

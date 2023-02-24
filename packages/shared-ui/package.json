@@ -30,6 +30,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.11",
     "framer-motion": "^9.0.7",
+    "lucide-react": "^0.115.0",
     "react-aria": "^3.22.0",
     "react-use-measure": "^2.1.1",
     "tailwind-variants": "^0.0.30"

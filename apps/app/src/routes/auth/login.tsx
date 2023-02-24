@@ -7,13 +7,19 @@ import {
   useTransition,
 } from '@remix-run/react'
 import { AuthorizationError } from 'remix-auth'
-import { Button, Input } from 'shared-ui'
+import { Alert, Button, Input, ResizablePanel } from 'shared-ui'
 import { login, withAuth } from '~/services/auth.server'
-import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { z, type ZodError } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRef } from 'react'
+import { capitalize } from '~/utils/primitives'
+
+type CustomError = {
+  field?: string
+  message: string
+  code?: string
+}
 
 const schema = z.object({
   email: z
@@ -30,7 +36,7 @@ type Schema = z.infer<typeof schema>
 
 export default function Login() {
   const transition = useTransition()
-  const actionErrors = useActionData<typeof action>()
+  const actionData = useActionData<CustomError | null>()
 
   const loading = transition.state !== 'idle'
 
@@ -46,7 +52,7 @@ export default function Login() {
   })
 
   return (
-    <div className="flex min-h-full flex-col items-center justify-center py-16">
+    <>
       <div>
         <img
           src="/logo.svg"
@@ -60,7 +66,7 @@ export default function Login() {
           Pas encore de compte ?{' '}
           <Link
             to="/auth/register"
-            className="text-primary-500 hover:text-primary-600 focus:ring-primary-600 dark:text-primary-300 dark:hover:text-primary-400 rounded font-medium hover:underline focus:outline-none focus:ring-2"
+            className="text-primary-500 hover:text-primary-600 focus:ring-primary-400 dark:text-primary-300 dark:hover:text-primary-400 rounded font-medium hover:underline focus:outline-none focus:ring-2"
           >
             S{"'"}inscrire
           </Link>
@@ -69,19 +75,29 @@ export default function Login() {
       <Form
         method="post"
         ref={formRef}
-        // onSubmit={handleSubmit((data) => submit(formRef.current))}
-        className="mx-auto grid w-full max-w-md grid-cols-1 gap-6 rounded-2xl border border-neutral-200 bg-white p-8 shadow-md dark:border-neutral-700 dark:bg-neutral-900"
+        onSubmit={handleSubmit((data) => submit(formRef.current))}
+        className="mx-auto grid w-full max-w-md grid-cols-1 gap-6 rounded-2xl border border-neutral-200 bg-white p-8 pt-2 shadow-md dark:border-neutral-700 dark:bg-neutral-900"
       >
-        {actionErrors && (
-          <pre className="bg-danger-500 text-white">
-            {JSON.stringify(actionErrors, null, 2)}
-          </pre>
-        )}
+        <ResizablePanel>
+          {actionData && (
+            <Alert
+              title="Une erreur est survenue"
+              color="warning"
+              dismissible={true}
+            >
+              <p>
+                {actionData.field && `${capitalize(actionData.field)} : `}
+                {actionData.message}
+              </p>
+            </Alert>
+          )}
+        </ResizablePanel>
         <Input
           label="Adresse email"
           type="text"
           placeholder="exemple@gmail.com"
           error={errors.email?.message}
+          defaultValue="test@test.com"
           {...register('email')}
         />
         <Input
@@ -89,6 +105,7 @@ export default function Login() {
           type="password"
           placeholder="••••••••"
           error={errors.password?.message}
+          defaultValue="123456"
           {...register('password')}
         />
         <Button
@@ -97,13 +114,12 @@ export default function Login() {
           size="xl"
           type="submit"
           className="mt-6 font-semibold uppercase"
-          isDisabled={loading}
+          loading={loading}
         >
-          {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           Se connecter
         </Button>
       </Form>
-    </div>
+    </>
   )
 }
 
@@ -112,19 +128,21 @@ export async function action({ request }: ActionArgs) {
   try {
     schema.parse(Object.fromEntries(formData))
   } catch (err: unknown) {
-    return json({
-      errors: (err as ZodError).issues.map((e) => ({
-        field: e.path[0],
-        message: e.message,
-      })),
-    })
+    const error: CustomError = (err as ZodError).issues.map((e) => ({
+      field: e.path[0] as string,
+      message: e.message,
+    }))[0]
+    return json(error, { status: 422 })
   }
 
   try {
     await login(request, formData)
-  } catch (error) {
-    if (error instanceof AuthorizationError) {
-      return json(JSON.parse(error.message))
+  } catch (err) {
+    if (err instanceof AuthorizationError) {
+      const error: CustomError = {
+        message: err.message,
+      }
+      return json(error, { status: 422 })
     }
     await login(request, formData, false)
   }
@@ -133,5 +151,5 @@ export async function action({ request }: ActionArgs) {
 
 export async function loader({ request }: LoaderArgs) {
   await withAuth(request, { success: true })
-  return json({})
+  return null
 }
