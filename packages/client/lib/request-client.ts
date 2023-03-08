@@ -15,8 +15,9 @@ export type FetchReturn<T> =
   | {
       data: T
       error: undefined
+      ok: true
     }
-  | { data: undefined; error: FetchError<ErrorData> }
+  | { data: undefined; error: FetchError<ErrorData>; ok: false }
 
 export type Headers = Record<string, string>
 
@@ -58,6 +59,7 @@ export default class RequestClient {
     } catch (err) {
       error = err as any
     }
-    return { data, error } as any
+    const ok = error === undefined
+    return { data, ok, error } as any
   }
 }

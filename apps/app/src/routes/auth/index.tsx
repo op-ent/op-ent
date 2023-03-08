@@ -9,7 +9,7 @@ export default function AuthLayout() {
     <>
       <ThemeSelector className="fixed top-4 right-4 z-30" />
       <PageTransition as="main">
-        <div className="flex min-h-full flex-col items-center justify-center py-16">
+        <div className="flex min-h-full flex-col items-center justify-center py-4">
           {outlet}
         </div>
       </PageTransition>
