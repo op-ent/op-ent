@@ -1,6 +1,6 @@
-# www
+# docs
 
-Application [Next.js](https://nextjs.org/)
+Application [Vitepress](https://vitepress.vuejs.org/)
 
 ## Prérequis
 
@@ -12,4 +12,4 @@ Application [Next.js](https://nextjs.org/)
 
 Installez les dépendences avec `pnpm install`.
 
-Exécutez `pnpm www:dev`.
+Exécutez `pnpm docs:dev`.

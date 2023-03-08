@@ -19,6 +19,7 @@ export default defineConfig({
   lastUpdated: true,
   cleanUrls: true,
   outDir: './dist',
+  srcDir: './content',
   head: [
     ['meta', { name: 'description', content: META_DESC }],
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
