@@ -1,57 +1,61 @@
-import { type LoaderArgs, type ActionArgs, json } from '@remix-run/node'
-import { Form, useLoaderData } from '@remix-run/react'
-import { logout, withAuth } from '~/services/auth.server'
-import { Button } from 'shared-ui'
+import { type LoaderArgs, json } from '@remix-run/node'
+import { useLoaderData } from '@remix-run/react'
+import { withAuth } from '~/services/auth.server'
 import { getSession } from '~/services/session.server'
+import { GraduationCap, Home, Settings } from 'lucide-react'
+import { type Navigation } from '~/components/layout/Sidebar'
+import Layout from '~/components/layout/Layout'
+import { Heading } from 'shared-ui'
+
+const navigation: Navigation = [
+  {
+    href: '/',
+    text: 'Accueil',
+    icon: Home,
+  },
+  {
+    href: '/settings',
+    text: 'Paramètres',
+    icon: Settings,
+  },
+  {
+    title: 'Etablissements',
+    items: [
+      {
+        href: '/s/1/overview',
+        text: 'Eleve 1',
+        icon: GraduationCap,
+      },
+      {
+        href: '/s/2/overview',
+        text: 'Eleve 2',
+        icon: GraduationCap,
+      },
+    ],
+  },
+]
 
 export default function Index() {
   const data = useLoaderData<typeof loader>()
   return (
-    <div className="p-4">
-      <h1 className="mb-2 text-5xl font-bold">Home</h1>
-      <p className="mb-5 text-lg text-neutral-600">
+    <Layout navigation={navigation}>
+      <Heading as="h1" tag="h1" className="mb-2 text-5xl font-bold">
+        Bienvenue !
+      </Heading>
+      <Heading as="h1" tag="h1" className="mb-2 text-5xl font-bold">
+        Heading 1
+      </Heading>
+      <Heading as="h2" tag="h2" className="mb-2 text-5xl font-bold">
+        Heading 2
+      </Heading>
+      <Heading as="h3" tag="h3" className="mb-2 text-5xl font-bold">
+        Heading 3
+      </Heading>
+      <p className="mb-5 text-lg text-neutral-400">
         {data?.session.data.user.user.email}
       </p>
-      <Form method="post">
-        <Button color="danger" variant="solid" size="lg" type="submit">
-          Déconnexion
-        </Button>
-      </Form>
-      <div className="mt-4">
-        {(
-          [
-            'primary',
-            'neutral',
-            'danger',
-            'warning',
-            'success',
-            'info',
-          ] as const
-        ).map((color) => (
-          <div key={color} className="mt-6 flex items-center space-x-6">
-            {(['solid', 'outline', 'subtle'] as const).map((variant) => (
-              <div key={variant} className="mt-2 flex items-center space-x-6">
-                {(['xs', 'sm', 'md', 'lg', 'xl'] as const).map((size) => (
-                  <Button
-                    key={size}
-                    color={color}
-                    variant={variant}
-                    size={size}
-                  >
-                    Button
-                  </Button>
-                ))}
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
+    </Layout>
   )
-}
-
-export async function action({ request }: ActionArgs) {
-  await logout(request)
 }
 
 export async function loader({ request }: LoaderArgs) {
