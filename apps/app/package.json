@@ -21,6 +21,7 @@
     "cross-env": "^7.0.3",
     "framer-motion": "^9.0.7",
     "isbot": "^3.6.6",
+    "jotai": "^2.0.3",
     "lucide-react": "^0.115.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -29,6 +30,7 @@
     "remix-auth-form": "^1.3.0",
     "shared-ui": "workspace:*",
     "tailwind-shared": "workspace:*",
+    "ts-pattern": "^4.2.1",
     "zod": "^3.20.6"
   },
   "devDependencies": {

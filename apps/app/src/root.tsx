@@ -12,6 +12,8 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react'
+import { Provider as JotaiProvider } from 'jotai'
+import { GlobalProgress } from '~/components/layout/GlobalProgress'
 import styles from './tailwind.css'
 
 const darkModeScript = `
@@ -78,10 +80,13 @@ export default function RootLayout() {
         <script dangerouslySetInnerHTML={{ __html: darkModeScript }}></script>
       </head>
       <body className="h-full bg-neutral-50 dark:bg-neutral-800">
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
+        <JotaiProvider>
+          <GlobalProgress />
+          <Outlet />
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </JotaiProvider>
       </body>
     </html>
   )

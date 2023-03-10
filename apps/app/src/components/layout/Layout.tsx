@@ -11,7 +11,7 @@ export default function Layout({ children, ...sidebarProps }: Props) {
       <Sidebar {...sidebarProps} />
       <TopNav />
       <PageTransition>
-        <main className="mt-14 ml-64 overflow-y-auto p-4">{children}</main>
+        <main className="mt-14 overflow-y-auto p-4 lg:ml-64">{children}</main>
       </PageTransition>
     </div>
   )
