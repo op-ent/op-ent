@@ -11,8 +11,10 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useCatch,
 } from '@remix-run/react'
 import { Provider as JotaiProvider } from 'jotai'
+import { Button } from 'shared-ui'
 import { GlobalProgress } from '~/components/layout/GlobalProgress'
 import styles from './tailwind.css'
 
@@ -69,26 +71,41 @@ export const links: LinksFunction = () => [
   },
 ]
 
-export default function RootLayout() {
+function SharedStructure({
+  children,
+  head,
+}: {
+  children: React.ReactNode
+  head?: React.ReactNode
+}) {
   return (
     <html lang="fr-FR" className="h-full">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
+        {head}
         <Meta />
         <Links />
         <script dangerouslySetInnerHTML={{ __html: darkModeScript }}></script>
       </head>
       <body className="h-full bg-neutral-50 dark:bg-neutral-800">
-        <JotaiProvider>
-          <GlobalProgress />
-          <Outlet />
-          <ScrollRestoration />
-          <Scripts />
-          <LiveReload />
-        </JotaiProvider>
+        {children}
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
       </body>
     </html>
+  )
+}
+
+export default function RootLayout() {
+  return (
+    <SharedStructure>
+      <JotaiProvider>
+        <GlobalProgress />
+        <Outlet />
+      </JotaiProvider>
+    </SharedStructure>
   )
 }
 
@@ -101,4 +118,51 @@ export function loader({ request: { url } }: LoaderArgs) {
     return redirect(newPath)
   }
   return null
+}
+
+export function CatchBoundary() {
+  const { status } = useCatch()
+
+  const text = status === 404 ? 'Page introuvable' : 'Une erreur est survenue'
+  const desc =
+    status === 404
+      ? "Désolé, nous n'avons pas trouvé la page que vous recherchez."
+      : 'Veuillez nous signaler le problème.'
+
+  return (
+    <SharedStructure head={<title>{`Erreur ${status} - ${text}`}</title>}>
+      <main className="grid min-h-full place-items-center py-24 px-6 sm:py-32 lg:px-8">
+        <div className="text-center">
+          <p className="text-primary-500 text-base font-semibold">{status}</p>
+          <h1 className="mt-4 text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-5xl">
+            {text}
+          </h1>
+          <p className="mt-6 text-base leading-7 text-neutral-500 dark:text-neutral-400">
+            {desc}
+          </p>
+          <div className="mt-10 flex flex-col items-center justify-center space-y-6 sm:flex-row sm:space-y-0 sm:space-x-6">
+            <Button
+              as="a"
+              href="/"
+              color="primary"
+              className="w-full sm:w-auto"
+            >
+              Retourner à l'accueil
+            </Button>
+            <Button
+              as="a"
+              href="https://github.com/op-ent/op-ent/issues"
+              color="neutral"
+              variant="subtle"
+              target="_blank"
+              rel="noreferrer"
+              className="w-full sm:w-auto"
+            >
+              Ouvrir une issue sur GitHub
+            </Button>
+          </div>
+        </div>
+      </main>
+    </SharedStructure>
+  )
 }
