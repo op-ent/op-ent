@@ -1,6 +1,7 @@
 import { Config } from './client'
 import { $Fetch, FetchError, ofetch } from 'ofetch'
 import { stripTrailingSlash } from './utils'
+import AuthResource from './resources/auth'
 
 // Based on Medusa client
 // Based on https://www.builder.io/blog/safe-data-fetching
@@ -32,6 +33,8 @@ export default class RequestClient {
   }
   private apiFetch: $Fetch
 
+  public auth: AuthResource | undefined
+
   constructor(config: Config) {
     this.config = { ...this.DEFAULT_CONFIG, ...config }
     this.config.baseUrl = stripTrailingSlash(this.config.baseUrl)
@@ -61,5 +64,16 @@ export default class RequestClient {
     }
     const ok = error === undefined
     return { data, ok, error } as any
+  }
+
+  public async authenticatedFetch<T = unknown>(
+    ...args: Parameters<typeof this.fetch>
+  ) {
+    if (!this.auth!.token) throw new Error('Not authenticated')
+    const [method, path, body, headers] = args
+    return this.fetch(method, path, body, {
+      Authorization: `Bearer ${this.auth!.token!}`,
+      ...headers,
+    })
   }
 }
