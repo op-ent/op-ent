@@ -29,8 +29,8 @@ export const buttonStyles = tv({
       info: '',
     },
     variant: {
-      solid: 'shadow-sm',
-      outline: 'shadow-sm',
+      solid: '',
+      outline: '',
       subtle: '',
     },
   },
