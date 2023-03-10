@@ -8,6 +8,7 @@
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "scripts": {
     "dev": "tsup --watch \"lib/**/*.{js,jsx,ts,tsx}\"",
     "build": "tsup",

@@ -39,18 +39,7 @@ export default function Index() {
   const data = useLoaderData<typeof loader>()
   return (
     <Layout navigation={navigation}>
-      <Heading as="h1" tag="h1" className="mb-2 text-5xl font-bold">
-        Bienvenue !
-      </Heading>
-      <Heading as="h1" tag="h1" className="mb-2 text-5xl font-bold">
-        Heading 1
-      </Heading>
-      <Heading as="h2" tag="h2" className="mb-2 text-5xl font-bold">
-        Heading 2
-      </Heading>
-      <Heading as="h3" tag="h3" className="mb-2 text-5xl font-bold">
-        Heading 3
-      </Heading>
+      <Heading as="h1">Bienvenue !</Heading>
       <p className="mb-5 text-lg text-neutral-400">
         {data?.session.data.user.user.email}
       </p>

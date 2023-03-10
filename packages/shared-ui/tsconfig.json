@@ -1,8 +1,8 @@
 {
   "extends": "tsconfig-shared/react-library.json",
   "include": ["."],
-  "exclude": ["dist", "build", "node_modules"]
-  // "compilerOptions": {
-  //   "lib": ["ES2015", "DOM"]
-  // }
+  "exclude": ["dist", "build", "node_modules"],
+  "compilerOptions": {
+    "lib": ["ES2020", "DOM"]
+  }
 }

@@ -3,7 +3,7 @@ import { tv, type VariantProps } from 'tailwind-variants'
 import { ComponentProps, PolymorphicRef } from '../types/polymorphic'
 import { ResizablePanel } from './ResizablePanel'
 
-const styles = tv({
+export const inputStyles = tv({
   slots: {
     wrapper: [
       'focus-within:border-transparent focus-within:ring focus-within:ring-primary-300 dark:focus-within:ring-primary-600',
@@ -33,7 +33,7 @@ const styles = tv({
   },
 })
 
-type InputVariants = VariantProps<typeof styles>
+type InputVariants = VariantProps<typeof inputStyles>
 
 export interface InputProps extends InputVariants {
   as?: React.ElementType
@@ -63,9 +63,9 @@ export const Input: InputComponent = forwardRef(
     const {
       wrapper: wrapperStyles,
       label: labelStyles,
-      input: inputStyles,
+      input: _inputStyles,
       error: errorStyles,
-    } = styles({ hasError })
+    } = inputStyles({ hasError })
     const Component = as as React.ElementType
 
     return (
@@ -77,7 +77,7 @@ export const Input: InputComponent = forwardRef(
           <Component
             ref={ref}
             id={id}
-            className={inputStyles({ className })}
+            className={_inputStyles({ className })}
             {...inputProps}
           />
         </div>

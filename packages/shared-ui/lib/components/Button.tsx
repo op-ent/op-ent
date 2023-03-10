@@ -4,7 +4,7 @@ import { useButton } from 'react-aria'
 import { tv, type VariantProps } from 'tailwind-variants'
 import { ComponentProps, PolymorphicRef } from '../types/polymorphic'
 
-const styles = tv({
+export const buttonStyles = tv({
   base: [
     'inline-flex items-center justify-center border-2 border-transparent rounded-md font-medium transition-all select-none',
     'active:scale-95',
@@ -151,7 +151,7 @@ const styles = tv({
   },
 })
 
-type ButtonVariants = VariantProps<typeof styles>
+type ButtonVariants = VariantProps<typeof buttonStyles>
 
 export interface ButtonProps extends ButtonVariants {
   as?: React.ElementType
@@ -191,7 +191,7 @@ export const Button: ButtonComponent = forwardRef(
       <Component
         ref={newRef}
         {...buttonProps}
-        className={styles({ color, size, variant, className })}
+        className={buttonStyles({ color, size, variant, className })}
       >
         {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         {children}

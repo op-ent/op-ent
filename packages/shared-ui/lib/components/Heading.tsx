@@ -2,7 +2,7 @@ import { forwardRef } from 'react'
 import { tv, type VariantProps } from 'tailwind-variants'
 import { ComponentProps, PolymorphicRef } from '../types/polymorphic'
 
-const styles = tv({
+export const headingStyles = tv({
   base: 'font-bold',
   variants: {
     tag: {
@@ -19,7 +19,10 @@ const styles = tv({
   },
 })
 
-type HeadingVariants = VariantProps<typeof styles>
+const headingTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const
+type HeadingTag = (typeof headingTags)[number]
+
+type HeadingVariants = VariantProps<typeof headingStyles>
 
 export interface HeadingProps extends HeadingVariants {
   as?: React.ElementType
@@ -35,11 +38,28 @@ export const Heading: HeadingComponent = forwardRef(
     props: ComponentProps<C, HeadingProps>,
     ref?: PolymorphicRef<C>
   ) => {
-    const { as = 'h1', children, className, tag, ...rest } = props
+    const {
+      as = 'h1',
+      children,
+      className,
+      tag = (() => {
+        for (const headingTag of headingTags) {
+          if (headingTag === as) return true
+        }
+        return false
+      })()
+        ? (as as HeadingTag)
+        : 'h1',
+      ...rest
+    } = props
     const Component = as as React.ElementType
 
     return (
-      <Component ref={ref} {...rest} className={styles({ tag, className })}>
+      <Component
+        ref={ref}
+        {...rest}
+        className={headingStyles({ tag, className })}
+      >
         {children}
       </Component>
     )

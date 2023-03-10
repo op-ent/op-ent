@@ -7,15 +7,14 @@ import {
   InfoIcon,
   XIcon,
 } from 'lucide-react'
+import { IconButton } from './IconButton'
 
-const styles = tv({
+export const alertStyles = tv({
   slots: {
     wrapper: 'rounded-md p-4 border',
     icon: 'h-5 w-5',
     title: 'text-sm font-medium',
     content: 'mt-2 text-sm',
-    dismissIcon:
-      'inline-flex rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all bg-transparent',
   },
   variants: {
     color: {
@@ -25,8 +24,6 @@ const styles = tv({
         icon: 'text-danger-400 dark:text-danger-500',
         title: 'text-danger-800 dark:text-danger-50',
         content: 'text-danger-700 dark:text-danger-200',
-        dismissIcon:
-          'text-danger-500 hover:bg-danger-100 focus:ring-danger-500 focus:ring-offset-danger-50 dark:hover:bg-danger-800 dark:focus:ring-offset-danger-900',
       },
       warning: {
         wrapper:
@@ -34,8 +31,6 @@ const styles = tv({
         icon: 'text-warning-400 dark:text-warning-500',
         title: 'text-warning-800 dark:text-warning-50',
         content: 'text-warning-700 dark:text-warning-200',
-        dismissIcon:
-          'text-warning-500 hover:bg-warning-100 focus:ring-warning-500 focus:ring-offset-warning-50 dark:hover:bg-warning-800 dark:focus:ring-offset-warning-900',
       },
       success: {
         wrapper:
@@ -43,8 +38,6 @@ const styles = tv({
         icon: 'text-success-400 dark:text-success-500',
         title: 'text-success-800 dark:text-success-50',
         content: 'text-success-700 dark:text-success-200',
-        dismissIcon:
-          'text-success-500 hover:bg-success-100 focus:ring-success-500 focus:ring-offset-success-50 dark:hover:bg-success-800 dark:focus:ring-offset-success-900',
       },
       info: {
         wrapper:
@@ -52,8 +45,6 @@ const styles = tv({
         icon: 'text-info-400 dark:text-info-500',
         title: 'text-info-800 dark:text-info-50',
         content: 'text-info-700 dark:text-info-200',
-        dismissIcon:
-          'text-info-500 hover:bg-info-100 focus:ring-info-500 focus:ring-offset-info-50 dark:hover:bg-info-800 dark:focus:ring-offset-info-900',
       },
     },
   },
@@ -62,7 +53,7 @@ const styles = tv({
   },
 })
 
-type AlertVariants = VariantProps<typeof styles>
+type AlertVariants = VariantProps<typeof alertStyles>
 
 function getIcon(color: AlertVariants['color']) {
   switch (color) {
@@ -98,8 +89,7 @@ export function Alert(props: AlertProps) {
     icon: iconStyles,
     title: titleStyles,
     content: contentStyles,
-    dismissIcon: dismissIconStyles,
-  } = styles({ color })
+  } = alertStyles({ color })
 
   const Icon = getIcon(color)
 
@@ -124,16 +114,16 @@ export function Alert(props: AlertProps) {
         {dismissible && (
           <div className="ml-auto pl-3">
             <div className="-mx-1.5 -my-1.5">
-              {/* TODO: Use IcconButton */}
-              <button
-                type="button"
-                className={dismissIconStyles()}
+              <IconButton
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                color={color as any}
                 onClick={() => setDismissed(true)}
-                disabled={dismissed}
+                aria-label="Ignorer"
+                size="xs"
+                variant="outline"
               >
-                <span className="sr-only">Dismiss</span>
-                <XIcon className="h-5 w-5" aria-hidden="true" />
-              </button>
+                <XIcon />
+              </IconButton>
             </div>
           </div>
         )}

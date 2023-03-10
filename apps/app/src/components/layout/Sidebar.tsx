@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import { useAtom } from 'jotai'
 import { X } from 'lucide-react'
 import { Fragment, useEffect } from 'react'
-import { Button } from 'shared-ui'
+import { Button, IconButton } from 'shared-ui'
 import useAuth from '~/hooks/use-auth'
 import { openSidebarAtom } from '~/stores/layout'
 
@@ -113,7 +113,7 @@ function MobileSidebar(props: Props) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-neutral-500 bg-opacity-80 dark:bg-neutral-800" />
+          <div className="fixed inset-0 bg-neutral-500/80 dark:bg-neutral-800/80" />
         </Transition.Child>
 
         <div className="fixed inset-0 z-40 flex">
@@ -137,15 +137,15 @@ function MobileSidebar(props: Props) {
                 leaveTo="opacity-0"
               >
                 <div className="absolute top-0 right-0 -mr-10 pt-2">
-                  <Button
-                    aria-hidden="true"
+                  <IconButton
                     variant="subtle"
-                    className="p-1 focus:ring-offset-neutral-500/80 dark:ring-offset-neutral-800/80"
+                    size="xs"
+                    className="focus:ring-offset-neutral-500/80 dark:ring-offset-neutral-800/80"
                     onClick={() => setOpen(false)}
+                    aria-label="Fermer le menu latéral"
                   >
-                    <span className="sr-only">Close sidebar</span>
-                    <X className="h-5 w-5" aria-hidden="true" />
-                  </Button>
+                    <X />
+                  </IconButton>
                 </div>
               </Transition.Child>
               <SidebarContent {...props} />

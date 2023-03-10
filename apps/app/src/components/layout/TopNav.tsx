@@ -1,5 +1,5 @@
 import ThemeSelector from '~/components/molecules/ThemeSelector'
-import { Button, KBD } from 'shared-ui'
+import { IconButton, KBD } from 'shared-ui'
 import { useSetAtom } from 'jotai'
 import { openSidebarAtom } from '~/stores/layout'
 import { Menu } from 'lucide-react'
@@ -7,14 +7,14 @@ import { Menu } from 'lucide-react'
 function SidebarButton() {
   const setOpen = useSetAtom(openSidebarAtom)
   return (
-    <Button
-      aria-hidden="true"
+    <IconButton
       variant="subtle"
-      className="mr-4 p-2 lg:hidden"
+      className="mr-4 lg:hidden"
       onClick={() => setOpen(true)}
+      aria-label="Ouvrir le menu latéral"
     >
-      <Menu className="h-4 w-4" />
-    </Button>
+      <Menu />
+    </IconButton>
   )
 }
 
