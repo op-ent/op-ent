@@ -37,8 +37,12 @@ auth.use(
 
 export async function withAuth(
   request: Request,
-  { success = false, failure = false }
+  opts: { success?: boolean; failure?: boolean } = {
+    success: false,
+    failure: false,
+  }
 ) {
+  const { success, failure } = opts
   return await auth.isAuthenticated(request, {
     successRedirect: success && '/',
     failureRedirect: failure && FAILURE_REDIRECT_PATH,

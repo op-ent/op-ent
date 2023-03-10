@@ -3,6 +3,7 @@ import { IconButton, KBD } from 'shared-ui'
 import { useSetAtom } from 'jotai'
 import { openSidebarAtom } from '~/stores/layout'
 import { Menu } from 'lucide-react'
+import useAuth from '~/hooks/use-auth'
 
 function SidebarButton() {
   const setOpen = useSetAtom(openSidebarAtom)
@@ -30,6 +31,20 @@ function CommandPaletteButton() {
   )
 }
 
+function UserAvatar() {
+  const { getUser } = useAuth()
+  const user = getUser()
+  return (
+    <img
+      src={encodeURI(
+        `https://source.boringavatars.com/beam/40/${user.id}?colors=38bdf8,0ea5e9,0284c7`
+      )}
+      alt={`Avatar de ${user.email}`}
+      className="h-10 w-10 rounded-full"
+    />
+  )
+}
+
 export default function TopNav() {
   return (
     <div className="fixed top-0 right-0 left-0 h-14 border-b border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900 lg:left-64">
@@ -38,7 +53,10 @@ export default function TopNav() {
           <SidebarButton />
           <CommandPaletteButton />
         </div>
-        <ThemeSelector className="relative" />
+        <div className="flex items-center space-x-4">
+          <ThemeSelector className="relative" />
+          <UserAvatar />
+        </div>
       </div>
     </div>
   )

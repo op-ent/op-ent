@@ -3,6 +3,7 @@ import {
   type LoaderArgs,
   redirect,
   type V2_MetaFunction,
+  json,
 } from '@remix-run/node'
 import {
   Links,
@@ -12,10 +13,13 @@ import {
   Scripts,
   ScrollRestoration,
   useCatch,
+  useLoaderData,
 } from '@remix-run/react'
 import { Provider as JotaiProvider } from 'jotai'
 import { Button } from 'shared-ui'
 import { GlobalProgress } from '~/components/layout/GlobalProgress'
+import { withAuth } from './services/auth.server'
+import { client } from './services/client'
 import styles from './tailwind.css'
 
 const darkModeScript = `
@@ -99,6 +103,11 @@ function SharedStructure({
 }
 
 export default function RootLayout() {
+  const loaderData = useLoaderData<typeof loader>()
+  if (loaderData?.authData) {
+    client.auth.token = loaderData.authData.token
+    client.auth.user = loaderData.authData.user
+  }
   return (
     <SharedStructure>
       <JotaiProvider>
@@ -110,14 +119,16 @@ export default function RootLayout() {
 }
 
 // Always remove trailing slash
-export function loader({ request: { url } }: LoaderArgs) {
-  const parsedUrl = new URL(url)
+export async function loader({ request }: LoaderArgs) {
+  const parsedUrl = new URL(request.url)
   const path = parsedUrl.pathname
   if (path.length > 1 && /\/$/.test(path)) {
     const newPath = path.slice(0, -1) + parsedUrl.search + parsedUrl.hash
     return redirect(newPath)
   }
-  return null
+
+  const authData = await withAuth(request)
+  return json({ authData })
 }
 
 export function CatchBoundary() {

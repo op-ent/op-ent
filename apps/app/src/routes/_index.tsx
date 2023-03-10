@@ -1,7 +1,5 @@
-import { type LoaderArgs, json } from '@remix-run/node'
-import { useLoaderData } from '@remix-run/react'
+import { type LoaderArgs } from '@remix-run/node'
 import { withAuth } from '~/services/auth.server'
-import { getSession } from '~/services/session.server'
 import { GraduationCap, Home, Settings } from 'lucide-react'
 import { type Navigation } from '~/components/layout/Sidebar'
 import Layout from '~/components/layout/Layout'
@@ -36,19 +34,14 @@ const navigation: Navigation = [
 ]
 
 export default function Index() {
-  const data = useLoaderData<typeof loader>()
   return (
     <Layout navigation={navigation}>
       <Heading as="h1">Bienvenue !</Heading>
-      <p className="mb-5 text-lg text-neutral-400">
-        {data?.session.data.user.user.email}
-      </p>
     </Layout>
   )
 }
 
 export async function loader({ request }: LoaderArgs) {
   await withAuth(request, { failure: true })
-  const session = await getSession(request.headers.get('cookie'))
-  return json({ session })
+  return null
 }
