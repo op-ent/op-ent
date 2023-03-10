@@ -28,3 +28,7 @@ Route.group(() => {
   Route.post('login', 'AuthController.login')
   Route.post('register', 'AuthController.register')
 }).prefix('auth')
+
+Route.group(() => {
+  Route.get('/profile/:id', 'ProfilesController.show')
+}).middleware('auth')
