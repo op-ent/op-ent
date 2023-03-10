@@ -12,7 +12,7 @@ const navigation: Navigation = [
     icon: Home,
   },
   {
-    href: '/settings',
+    href: '/settings/general',
     text: 'Paramètres',
     icon: Settings,
   },

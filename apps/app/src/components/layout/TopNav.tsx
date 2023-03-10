@@ -3,7 +3,7 @@ import { IconButton, KBD } from 'shared-ui'
 import { useSetAtom } from 'jotai'
 import { openSidebarAtom } from '~/stores/layout'
 import { Menu } from 'lucide-react'
-import useAuth from '~/hooks/use-auth'
+import useUser from '~/hooks/use-user'
 
 function SidebarButton() {
   const setOpen = useSetAtom(openSidebarAtom)
@@ -32,8 +32,7 @@ function CommandPaletteButton() {
 }
 
 function UserAvatar() {
-  const { getUser } = useAuth()
-  const user = getUser()
+  const user = useUser()
   return (
     <img
       src={encodeURI(

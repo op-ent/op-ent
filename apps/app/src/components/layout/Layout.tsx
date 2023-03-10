@@ -1,4 +1,3 @@
-import { redirect } from '@remix-run/node'
 import PageTransition from './PageTransition'
 import Sidebar, { type Props as SidebarProps } from './Sidebar'
 import TopNav from './TopNav'
@@ -15,21 +14,4 @@ export default function Layout({ children, ...sidebarProps }: Props) {
       </PageTransition>
     </div>
   )
-}
-
-export function defaultRedirect({
-  request,
-  entryURL,
-  exitURL,
-}: {
-  request: Request
-  entryURL: string
-  exitURL: string
-}) {
-  const { url } = request
-  const parsedURL = new URL(url)
-  if (parsedURL.pathname === entryURL) {
-    return redirect(exitURL)
-  }
-  return null
 }
