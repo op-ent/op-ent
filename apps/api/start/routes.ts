@@ -30,5 +30,15 @@ Route.group(() => {
 }).prefix('auth')
 
 Route.group(() => {
-  Route.get('/profile/:id', 'ProfilesController.show')
+  Route.get('/profile/:id', 'ProfilesController.show').where('id', {
+    match: /^[0-9]+$/,
+    cast: (id) => Number(id),
+  })
+  Route.resource('users', 'UsersController')
+    .apiOnly()
+    .where('id', {
+      match: /^[0-9]+$/,
+      cast: (id) => Number(id),
+    })
+    .middleware({ '*': 'role:admin' })
 }).middleware('auth')
