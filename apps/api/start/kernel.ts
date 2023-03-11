@@ -21,6 +21,7 @@ import Server from '@ioc:Adonis/Core/Server'
 |
 */
 Server.middleware.register([
+  () => import('App/Middleware/Global/LogRequest'),
   () => import('@ioc:Adonis/Core/BodyParser'),
   () => import('App/Middleware/Global/SilentAuth'),
 ])
