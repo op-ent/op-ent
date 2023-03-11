@@ -45,7 +45,7 @@ export default function SettingsGeneral() {
   return (
     <div>
       <Breadcrumb pages={pages} />
-      <Heading as="h1" tag="h3" className="mb-4">
+      <Heading as="h1" tag="h3" className="my-6">
         Paramètres généraux
       </Heading>
       <Table
