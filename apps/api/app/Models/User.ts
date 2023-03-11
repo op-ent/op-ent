@@ -1,6 +1,9 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
 import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
+import { enumArrayColumn } from 'App/Helpers/Models/EnumArrayColumn'
+
+export type UserRole = 'admin' | 'user' | 'developer'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -14,6 +17,13 @@ export default class User extends BaseModel {
 
   @column()
   public rememberMeToken: string | null
+
+  @enumArrayColumn()
+  public roles: UserRole[]
+
+  public hasRole(role: UserRole) {
+    return this.roles.includes(role)
+  }
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
