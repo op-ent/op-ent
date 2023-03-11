@@ -9,7 +9,8 @@
     "build": "node ace build --production",
     "start": "node server.js",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test": "node ace test"
   },
   "prettier": {
     "trailingComma": "es5",
