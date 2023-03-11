@@ -19,7 +19,7 @@
     "lint": "pnpm lint:all && pnpm format",
     "format": "prettier --write --cache .",
     "lint:all": "nx run-many --parallel --all --target=lint --fix",
-    "test": "nx run-many --parallel --al --target=test"
+    "test": "nx run-many --parallel --all --target=test"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.4",
