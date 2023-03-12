@@ -48,8 +48,15 @@ export default class AuthController {
   public async login({ auth, request, response }: HttpContextContract) {
     const { email, password } = await request.validate({
       schema: schema.create({
-        email: schema.string({ trim: true }, [rules.email()]),
-        password: schema.string({ trim: true }),
+        email: schema.string([rules.trim(), rules.email()]),
+        password: schema.string([
+          rules.trim(),
+          rules.minLength(8),
+          rules.regex(/[0-9]/),
+          rules.regex(/[a-z]/),
+          rules.regex(/[A-Z]/),
+          rules.regex(/[$&+,:;=?@#|'<>.^*()%!-]/),
+        ]),
       }),
     })
 
