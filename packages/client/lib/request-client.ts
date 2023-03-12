@@ -37,7 +37,7 @@ export default class RequestClient {
 
   constructor(config: Config) {
     this.config = { ...this.DEFAULT_CONFIG, ...config }
-    this.config.baseUrl = stripTrailingSlash(this.config.baseUrl)
+    this.config.baseUrl = stripTrailingSlash(this.config.baseUrl) + '/v1'
     this.apiFetch = this.createApiFetch(this.config)
   }
 
