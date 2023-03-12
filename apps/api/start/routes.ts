@@ -24,21 +24,120 @@ Route.get('/', () => {
   return 'API de op-ent. Read more on https://docs.op-ent.fr.'
 })
 
+/*
+|--------------------------------------------------------------------------
+| API v1
+|--------------------------------------------------------------------------
+|
+| This group is responsible for managing v1 routes.
+|
+*/
 Route.group(() => {
-  Route.post('login', 'AuthController.login')
-  Route.post('register', 'AuthController.register')
-}).prefix('auth')
-
-Route.group(() => {
-  Route.get('/profile/:id', 'ProfilesController.show').where('id', {
-    match: /^[0-9]+$/,
-    cast: (id) => Number(id),
+  /*
+  |--------------------------------------------------------------------------
+  | Public routes
+  |--------------------------------------------------------------------------
+  |
+  | This group is responsible for managing public routes, i.e. not protected
+  | by the auth middleware.
+  |
+  */
+  Route.group(() => {
+    /*
+    |--------------------------------------------------------------------------
+    | Auth routes
+    |--------------------------------------------------------------------------
+    |
+    | This group is responsible for managing auth routes.
+    |
+    */
+    Route.group(() => {
+      Route.post('login', 'AuthController.login')
+      Route.post('register', 'AuthController.register')
+    }).prefix('auth')
   })
-  Route.resource('users', 'UsersController')
-    .apiOnly()
-    .where('id', {
-      match: /^[0-9]+$/,
-      cast: (id) => Number(id),
+
+  /*
+  |--------------------------------------------------------------------------
+  | Protected routes
+  |--------------------------------------------------------------------------
+  |
+  | This group is responsible for managing protected routes, i.e. protected
+  | by the auth middleware.
+  |
+  */
+  Route.group(() => {
+    /*
+    |--------------------------------------------------------------------------
+    | Shared routes
+    |--------------------------------------------------------------------------
+    |
+    | This group is responsible for managing routes shared between all types of
+    | users.
+    |
+    */
+    Route.group(() => {
+      Route.get('/profile/:id', 'ProfilesController.show').where('id', {
+        match: /^[0-9]+$/,
+        cast: (id) => Number(id),
+      })
+    }).prefix('shared')
+
+    /*
+    |--------------------------------------------------------------------------
+    | Students routes
+    |--------------------------------------------------------------------------
+    |
+    | This group is responsible for managing routes related to students.
+    |
+    */
+    Route.group(() => {}).prefix('students')
+
+    /*
+    |--------------------------------------------------------------------------
+    | Teachers routes
+    |--------------------------------------------------------------------------
+    |
+    | This group is responsible for managing routes related to teachers.
+    |
+    */
+    Route.group(() => {}).prefix('teachers')
+
+    /*
+    |--------------------------------------------------------------------------
+    | Staff routes
+    |--------------------------------------------------------------------------
+    |
+    | This group is responsible for managing routes related to staff.
+    |
+    */
+    Route.group(() => {}).prefix('staff')
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin routes
+    |--------------------------------------------------------------------------
+    |
+    | This group is responsible for managing routes related to admin.
+    |
+    */
+    Route.group(() => {
+      /*
+      |--------------------------------------------------------------------------
+      | Users resource
+      |--------------------------------------------------------------------------
+      |
+      | Restful routes for users.
+      |
+      */
+      Route.resource('users', 'UsersController')
+        .apiOnly()
+        .where('id', {
+          match: /^[0-9]+$/,
+          cast: (id) => Number(id),
+        })
     })
-    .middleware({ '*': 'role:admin' })
-}).middleware('auth')
+      .prefix('admin')
+      .middleware('role:admin')
+  }).middleware('auth')
+}).prefix('v1')
