@@ -77,10 +77,7 @@ Route.group(() => {
     |
     */
     Route.group(() => {
-      Route.get('/profile/:id', 'ProfilesController.show').where('id', {
-        match: /^[0-9]+$/,
-        cast: (id) => Number(id),
-      })
+      Route.get('/profile/:id', 'ProfilesController.show').where('id', Route.matchers.number())
     }).prefix('shared')
 
     /*
@@ -130,12 +127,7 @@ Route.group(() => {
       | Restful routes for users.
       |
       */
-      Route.resource('users', 'UsersController')
-        .apiOnly()
-        .where('id', {
-          match: /^[0-9]+$/,
-          cast: (id) => Number(id),
-        })
+      Route.resource('users', 'UsersController').apiOnly().where('id', Route.matchers.number())
     })
       .prefix('admin')
       .middleware('role:admin')
