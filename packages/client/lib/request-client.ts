@@ -71,7 +71,7 @@ export default class RequestClient {
   ) {
     if (!this.auth!.token) throw new Error('Not authenticated')
     const [method, path, body, headers] = args
-    return this.fetch(method, path, body, {
+    return this.fetch<T>(method, path, body, {
       Authorization: `Bearer ${this.auth!.token!}`,
       ...headers,
     })
