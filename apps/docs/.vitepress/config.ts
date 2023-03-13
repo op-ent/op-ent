@@ -65,7 +65,7 @@ export default defineConfig({
     ],
     lastUpdatedText: 'Dernière mise à jour ',
     editLink: {
-      pattern: 'https://github.com/op-ent/op-ent/edit/main/apps/docs/:path',
+      pattern: 'https://github.com/op-ent/op-ent/edit/main/apps/docs/content/:path',
       text: 'Suggérer des modifications',
     },
     footer: {
