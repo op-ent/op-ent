@@ -52,10 +52,10 @@ export default class AuthController {
         password: schema.string([
           rules.trim(),
           rules.minLength(8),
-          rules.regex(/[0-9]/),
-          rules.regex(/[a-z]/),
-          rules.regex(/[A-Z]/),
-          rules.regex(/[$&+,:;=?@#|'<>.^*()%!-]/),
+          rules.containsNumber(),
+          rules.containsLowercaseCharacter(),
+          rules.containsUppercaseCharacter(),
+          rules.containsSpecialCharacter(),
         ]),
       }),
     })

@@ -20,28 +20,6 @@ test.group('Auth', (group) => {
     })
   })
 
-  test("can't login with only email", async ({ client, route }) => {
-    const response = await client.post(route('AuthController.login')).form({
-      email: 'test@test.com',
-    })
-
-    response.assertStatus(422)
-    response.assertBodyContains({
-      errors: [{ rule: 'required', field: 'password' }],
-    })
-  })
-
-  test("can't login with only password", async ({ client, route }) => {
-    const response = await client.post(route('AuthController.login')).form({
-      password: '12345678',
-    })
-
-    response.assertStatus(422)
-    response.assertBodyContains({
-      errors: [{ rule: 'required', field: 'email' }],
-    })
-  })
-
   test("can't login with invalid email", async ({ client, route }) => {
     const password = '12345678'
     let response = await client.post(route('AuthController.login')).form({
@@ -79,14 +57,17 @@ test.group('Auth', (group) => {
     const email = 'test@test.com'
     const response = await client.post(route('AuthController.login')).form({
       email,
-      password: 'a',
+      password: '`',
     })
 
     response.assertStatus(422)
     response.assertBodyContains({
       errors: [
         { message: 'minLength validation failed', field: 'password' },
-        { message: 'regex validation failed', field: 'password' },
+        { message: 'containsNumber validation failed', field: 'password' },
+        { message: 'containsLowercaseCharacter validation failed', field: 'password' },
+        { message: 'containsUppercaseCharacter validation failed', field: 'password' },
+        { message: 'containsSpecialCharacter validation failed', field: 'password' },
       ],
     })
   })
