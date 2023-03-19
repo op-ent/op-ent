@@ -21,10 +21,7 @@ export default class AuthController {
   */
   public async register({ auth, request, response }: HttpContextContract) {
     const { email, password } = await request.validate({
-      schema: schema.create({
-        email: schema.string({ trim: true }, [rules.email()]),
-        password: schema.string({ trim: true }, [rules.confirmed('passwordConfirmation')]),
-      }),
+      schema: this.authSchema({ passwordConfirmation: true }),
     })
 
     const existingUser = await User.findBy('email', email)
@@ -34,7 +31,7 @@ export default class AuthController {
 
     const user = await User.create({ email, password })
     const { token } = await auth.use('api').generate(user)
-    return { user, token }
+    return response.created({ user, token })
   }
 
   /*
@@ -47,17 +44,7 @@ export default class AuthController {
   */
   public async login({ auth, request, response }: HttpContextContract) {
     const { email, password } = await request.validate({
-      schema: schema.create({
-        email: schema.string([rules.trim(), rules.email()]),
-        password: schema.string([
-          rules.trim(),
-          rules.minLength(8),
-          rules.containsNumber(),
-          rules.containsLowercaseCharacter(),
-          rules.containsUppercaseCharacter(),
-          rules.containsSpecialCharacter(),
-        ]),
-      }),
+      schema: this.authSchema(),
     })
 
     try {
@@ -67,5 +54,20 @@ export default class AuthController {
     } catch {
       return response.unauthorized({ errors: [{ message: 'Invalid credentials' }] })
     }
+  }
+
+  private authSchema({ passwordConfirmation = false }: { passwordConfirmation?: boolean } = {}) {
+    return schema.create({
+      email: schema.string([rules.trim(), rules.email()]),
+      password: schema.string([
+        rules.trim(),
+        rules.minLength(8),
+        rules.containsNumber(),
+        rules.containsLowercaseCharacter(),
+        rules.containsUppercaseCharacter(),
+        rules.containsSpecialCharacter(),
+        ...(passwordConfirmation ? [rules.confirmed('passwordConfirmation')] : []),
+      ]),
+    })
   }
 }
