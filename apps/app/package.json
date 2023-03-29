@@ -7,7 +7,8 @@
     "dev": "remix dev",
     "start": "cross-env NODE_ENV=production netlify dev",
     "typecheck": "tsc",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "remix": "remix"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.11",
