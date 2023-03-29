@@ -5,7 +5,10 @@ module.exports = {
     process.env.NETLIFY || process.env.NETLIFY_LOCAL
       ? './server.js'
       : undefined,
-  serverBuildPath: '.netlify/functions-internal/server.js',
+  serverBuildPath:
+    process.env.NETLIFY || process.env.NETLIFY_LOCAL
+      ? '.netlify/functions-internal/server.js'
+      : undefined,
   serverDependenciesToBundle: [
     'shared-ui',
     'client',
