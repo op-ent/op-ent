@@ -5,7 +5,6 @@
   "author": "Florian LEFEBVRE",
   "license": "GPL-3.0",
   "scripts": {
-    "prepare": "husky install",
     "preinstall": "npx only-allow pnpm",
     "commit": "cz",
     "nx": "nx",
