@@ -7,6 +7,13 @@ Application [AdonisJS](https://adonisjs.com/)
 - Node.js `16.15.0`
 - Docker
 
+Sur Linux, il faut créer un alias pour la commande `docker-compose`:
+
+```sh
+echo 'docker compose --compatibility "$@"' | sudo tee -a /bin/docker-compose
+sudo chmod +x /bin/docker-compose
+```
+
 ## Développer
 
 > Toutes les commandes s'exécutent à la racine du repository
