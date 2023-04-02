@@ -5,6 +5,7 @@ const passwordSchema = z
   .min(1, { message: 'Champ obligatoire' })
   .min(6, { message: '6 caractères minimum' })
 
+// TODO : Add the way to login with username
 export const loginSchema = z.object({
   email: z
     .string()

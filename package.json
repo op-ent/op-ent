@@ -13,6 +13,7 @@
     "api:dev": "pnpm --filter api dev",
     "api:docker:dev": "pnpm --filter api docker:dev",
     "api:ace": "pnpm --filter api ace",
+    "api:ace:dev-refresh": "pnpm api:ace migration:fresh && pnpm api:ace db:seed",
     "app:dev": "pnpm --filter app dev",
     "shared-ui:dev": "pnpm --filter shared-ui dev",
     "lint": "pnpm lint:all && pnpm format",

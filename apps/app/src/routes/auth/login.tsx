@@ -61,6 +61,7 @@ export default function Login() {
             </Alert>
           )}
         </ResizablePanel>
+        {/* //TODO: Add the way to login with username */}
         <Input
           label="Adresse email"
           type="text"

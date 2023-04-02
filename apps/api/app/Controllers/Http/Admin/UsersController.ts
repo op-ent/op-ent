@@ -6,6 +6,18 @@ export default class UsersController {
   private userSchema = schema.create({
     email: schema.string([rules.email()]),
     password: schema.string([rules.minLength(8)]),
+    firstName: schema.string({
+      trim: true,
+    }),
+    lastName: schema.string({
+      trim: true,
+    }),
+    username: schema.string(
+      {
+        trim: true,
+      },
+      [rules.regex(/^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/)]
+    ),
   })
 
   public async index({}: HttpContextContract) {

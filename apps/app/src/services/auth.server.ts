@@ -15,6 +15,7 @@ export const auth = new Authenticator<
 
 auth.use(
   new FormStrategy(async ({ form }) => {
+    // TODO : Add the way to login with username
     const result = loginSchema.safeParse(Object.fromEntries(form))
     if (!result.success) {
       throw new AuthorizationError(

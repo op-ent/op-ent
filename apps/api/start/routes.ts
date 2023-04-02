@@ -59,6 +59,23 @@ Route.group(() => {
 
   /*
   |--------------------------------------------------------------------------
+  | Public informations routes
+  |--------------------------------------------------------------------------
+  |
+  | This group is responsible for exposing public informations about the
+  | application and authfree data (eg. organization name, address, etc.)
+  |
+  */
+  Route.group(() => {
+    Route.get('organizations', 'Public/PublicOrganizationsController.index')
+    Route.get('organizations/:id', 'Public/PublicOrganizationsController.show').where(
+      'id',
+      Route.matchers.number()
+    )
+  }).prefix('public')
+
+  /*
+  |--------------------------------------------------------------------------
   | Protected routes
   |--------------------------------------------------------------------------
   |
@@ -133,6 +150,22 @@ Route.group(() => {
       Route.resource('users', 'Admin/UsersController')
         .apiOnly()
         .where('id', Route.matchers.number())
+
+      Route.resource('organizations', 'Admin/OrganizationsController')
+        .apiOnly()
+        .where('id', Route.matchers.number())
+
+      Route.resource('accounts', 'Admin/AccountsController')
+        .apiOnly()
+        .where('id', Route.matchers.number())
+      Route.get('accounts/u/:user_id', 'Admin/AccountsController.listAccountsByUser').where(
+        'user_id',
+        Route.matchers.number()
+      )
+      Route.get('accounts/o/:organization_id', 'Admin/AccountsController.listAccountsByOrg').where(
+        'organization_id',
+        Route.matchers.number()
+      )
     })
       .prefix('admin')
       .middleware('role:admin')

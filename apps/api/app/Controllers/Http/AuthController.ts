@@ -40,6 +40,7 @@ export default class AuthController {
   |--------------------------------------------------------------------------
   |
   | This method is in charge of handling login requests.
+  | // TODO : Add the way to login with username
   |
   */
   public async login({ auth, request, response }: HttpContextContract) {
