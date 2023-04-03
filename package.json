@@ -15,6 +15,7 @@
     "api:ace": "pnpm --filter api ace",
     "api:ace:dev-refresh": "pnpm api:ace migration:fresh && pnpm api:ace db:seed",
     "app:dev": "pnpm --filter app dev",
+    "app:remix": "pnpm --filter app remix",
     "shared-ui:dev": "pnpm --filter shared-ui dev",
     "lint": "pnpm lint:all && pnpm format",
     "format": "prettier --write --cache .",
