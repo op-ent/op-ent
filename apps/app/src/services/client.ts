@@ -1,3 +1,6 @@
 import { createClient } from 'client'
+import getEnv from './get-env'
 
-export const client = createClient({ baseUrl: 'http://localhost:3333' })
+export const client = createClient({
+  baseUrl: getEnv()?.OPENT_BASEURL || 'http://localhost:3333',
+})

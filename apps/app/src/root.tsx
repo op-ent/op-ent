@@ -12,8 +12,9 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useCatch,
   useLoaderData,
+  isRouteErrorResponse,
+  useRouteError,
 } from '@remix-run/react'
 import { Provider as JotaiProvider } from 'jotai'
 import { Button } from 'shared-ui'
@@ -78,9 +79,11 @@ export const links: LinksFunction = () => [
 function SharedStructure({
   children,
   head,
+  envs,
 }: {
   children: React.ReactNode
   head?: React.ReactNode
+  envs?: Record<string, string>
 }) {
   return (
     <html lang="fr-FR" className="h-full">
@@ -97,6 +100,11 @@ function SharedStructure({
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.ENV = ${JSON.stringify(envs)}`,
+          }}
+        />
       </body>
     </html>
   )
@@ -109,7 +117,7 @@ export default function RootLayout() {
     client.auth.user = loaderData.authData.user
   }
   return (
-    <SharedStructure>
+    <SharedStructure envs={loaderData.ENV}>
       <JotaiProvider>
         <GlobalProgress />
         <Outlet />
@@ -128,52 +136,136 @@ export async function loader({ request }: LoaderArgs) {
   }
 
   const authData = await withAuth(request)
-  return json({ authData })
+
+  const envs = {
+    OPENT_BASEURL: process.env.OPENT_BASEURL,
+  }
+
+  return json({ authData, ENV: envs })
 }
 
-export function CatchBoundary() {
-  const { status } = useCatch()
+export function ErrorBoundary() {
+  let error = useRouteError()
+  console.error(error)
 
-  const text = status === 404 ? 'Page introuvable' : 'Une erreur est survenue'
-  const desc =
-    status === 404
-      ? "Désolé, nous n'avons pas trouvé la page que vous recherchez."
-      : 'Veuillez nous signaler le problème.'
-
-  return (
-    <SharedStructure head={<title>{`Erreur ${status} - ${text}`}</title>}>
-      <main className="grid min-h-full place-items-center py-24 px-6 sm:py-32 lg:px-8">
-        <div className="text-center">
-          <p className="text-primary-500 text-base font-semibold">{status}</p>
-          <h1 className="mt-4 text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-5xl">
-            {text}
-          </h1>
-          <p className="mt-6 text-base leading-7 text-neutral-500 dark:text-neutral-400">
-            {desc}
-          </p>
-          <div className="mt-10 flex flex-col items-center justify-center space-y-6 sm:flex-row sm:space-y-0 sm:space-x-6">
-            <Button
-              as="a"
-              href="/"
-              color="primary"
-              className="w-full sm:w-auto"
-            >
-              Retourner à l'accueil
-            </Button>
-            <Button
-              as="a"
-              href="https://github.com/op-ent/op-ent/issues"
-              color="neutral"
-              variant="subtle"
-              target="_blank"
-              rel="noreferrer"
-              className="w-full sm:w-auto"
-            >
-              Ouvrir une issue sur GitHub
-            </Button>
+  if (isRouteErrorResponse(error)) {
+    return (
+      <SharedStructure
+        head={<title>{`Erreur ${error.status} - ${error.statusText}`}</title>}
+      >
+        <main className="grid min-h-full place-items-center py-24 px-6 sm:py-32 lg:px-8">
+          <div className="text-center">
+            <p className="text-primary-500 text-base font-semibold">
+              {error.status}
+            </p>
+            <h1 className="mt-4 text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-5xl">
+              {error.status === 404
+                ? 'Page introuvable'
+                : 'Une erreur est survenue'}
+            </h1>
+            <p className="mt-6 text-base leading-7 text-neutral-500 dark:text-neutral-400">
+              {error.status === 404
+                ? "Désolé, nous n'avons pas trouvé la page que vous recherchez."
+                : 'Veuillez nous signaler le problème.'}
+            </p>
+            <div className="mt-10 flex flex-col items-center justify-center space-y-6 sm:flex-row sm:space-y-0 sm:space-x-6">
+              <Button
+                as="a"
+                href="/"
+                color="primary"
+                className="w-full sm:w-auto"
+              >
+                Retourner à l'accueil
+              </Button>
+              <Button
+                as="a"
+                href="https://github.com/op-ent/op-ent/issues"
+                color="neutral"
+                variant="subtle"
+                target="_blank"
+                rel="noreferrer"
+                className="w-full sm:w-auto"
+              >
+                Ouvrir une issue sur GitHub
+              </Button>
+            </div>
           </div>
-        </div>
-      </main>
-    </SharedStructure>
-  )
+        </main>
+      </SharedStructure>
+    )
+  } else if (error instanceof Error) {
+    return (
+      <SharedStructure head={<title>{`Erreur`}</title>}>
+        <main className="grid min-h-full place-items-center py-24 px-6 sm:py-32 lg:px-8">
+          <div className="text-center">
+            <h1 className="mt-4 text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-5xl">
+              {error.name}
+            </h1>
+            <p className="mt-6 text-base leading-7 text-neutral-500 dark:text-neutral-400">
+              {error.message}
+            </p>
+            <div className="mt-10 flex flex-col items-center justify-center space-y-6 sm:flex-row sm:space-y-0 sm:space-x-6">
+              <Button
+                as="a"
+                href="/"
+                color="primary"
+                className="w-full sm:w-auto"
+              >
+                Retourner à l'accueil
+              </Button>
+              <Button
+                as="a"
+                href="https://github.com/op-ent/op-ent/issues"
+                color="neutral"
+                variant="subtle"
+                target="_blank"
+                rel="noreferrer"
+                className="w-full sm:w-auto"
+              >
+                Ouvrir une issue sur GitHub
+              </Button>
+            </div>
+          </div>
+        </main>
+      </SharedStructure>
+    )
+  } else {
+    return (
+      <SharedStructure head={<title>{`Erreur`}</title>}>
+        <main className="grid min-h-full place-items-center py-24 px-6 sm:py-32 lg:px-8">
+          <div className="text-center">
+            <h1 className="mt-4 text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-5xl">
+              Erreur inconnue
+            </h1>
+            <p className="mt-6 text-base leading-7 text-neutral-500 dark:text-neutral-400">
+              Réessayez, si le problème persiste, veuillez contacter
+              l'administrateur de votre ent ou ouvrir une issue sur GitHub (pour
+              les geeks).
+            </p>
+            <div className="mt-10 flex flex-col items-center justify-center space-y-6 sm:flex-row sm:space-y-0 sm:space-x-6">
+              <Button
+                as="a"
+                href="/"
+                color="primary"
+                className="w-full sm:w-auto"
+              >
+                Retourner à l'accueil
+              </Button>
+              <Button
+                as="a"
+                href="https://github.com/op-ent/op-ent/issues"
+                color="neutral"
+                variant="subtle"
+                target="_blank"
+                rel="noreferrer"
+                className="w-full sm:w-auto"
+              >
+                Ouvrir une issue sur GitHub
+              </Button>
+            </div>
+          </div>
+        </main>
+      </SharedStructure>
+    )
+  }
 }

@@ -41,16 +41,16 @@ const pages = [
 ]
 
 export default function SettingsGeneral() {
-  const user = useUser()
+  const user = useUser() || {}
   return (
-    <div>
+    <div className="p-4">
       <Breadcrumb pages={pages} />
       <Heading as="h1" tag="h3" className="my-6">
         Paramètres généraux
       </Heading>
       <Table
         items={Object.entries(user).map((e) => ({
-          key: e[0] === 'id' ? 'ID' : capitalize(e[0]),
+          key: e[0] === 'id' ? 'ID' : capitalize(e[0]).replaceAll('_', ' '),
           value: e[1] === null ? 'None' : e[1].toString(),
         }))}
       />
