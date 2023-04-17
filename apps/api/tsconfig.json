@@ -1,7 +1,7 @@
 {
   "extends": "adonis-preset-ts/tsconfig.json",
   "include": ["**/*"],
-  "exclude": ["node_modules", "build"],
+  "exclude": ["node_modules", "build", "docker-data"],
   "compilerOptions": {
     "outDir": "build",
     "baseUrl": ".",
@@ -21,6 +21,6 @@
       "@adonisjs/lucid",
       "@adonisjs/redis",
       "@adonisjs/auth"
-    ]
+    ],
   }
 }
