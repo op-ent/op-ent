@@ -12,8 +12,9 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useCatch,
+  isRouteErrorResponse,
   useLoaderData,
+  useRouteError,
 } from '@remix-run/react'
 import { Provider as JotaiProvider } from 'jotai'
 import { Button } from 'shared-ui'
@@ -131,14 +132,23 @@ export async function loader({ request }: LoaderArgs) {
   return json({ authData })
 }
 
-export function CatchBoundary() {
-  const { status } = useCatch()
+export function ErrorBoundary() {
+  const error = useRouteError()
 
-  const text = status === 404 ? 'Page introuvable' : 'Une erreur est survenue'
-  const desc =
-    status === 404
+  const routeError = isRouteErrorResponse(error)
+
+  const text = routeError
+    ? error.status === 404
+      ? 'Page introuvable'
+      : 'Une erreur est survenue'
+    : 'Une erreur est survenue'
+  const desc = routeError
+    ? error.status === 404
       ? "Désolé, nous n'avons pas trouvé la page que vous recherchez."
       : 'Veuillez nous signaler le problème.'
+    : (error as any).message || 'Erreur inconnue'
+
+  const status = routeError ? error.status : 500
 
   return (
     <SharedStructure head={<title>{`Erreur ${status} - ${text}`}</title>}>

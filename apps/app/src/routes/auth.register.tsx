@@ -1,6 +1,6 @@
 import type { V2_MetaFunction } from '@remix-run/node'
 import { type ActionArgs, type LoaderArgs } from '@remix-run/node'
-import { Form, Link, useActionData, useTransition } from '@remix-run/react'
+import { Form, Link, useActionData, useNavigation } from '@remix-run/react'
 import { Alert, Button, Input, ResizablePanel } from 'shared-ui'
 import { register, withAuth } from '~/services/auth.server'
 import { capitalize } from '~/utils/primitives'
@@ -9,10 +9,10 @@ import AuthForm from '~/components/templates/AuthForm'
 import { registerSchema } from '~/schemas/auth'
 
 export default function Login() {
-  const transition = useTransition()
+  const navigation = useNavigation()
   const actionErrors = useActionData<typeof action>()
 
-  const loading = transition.state === 'submitting'
+  const loading = navigation.state === 'submitting'
 
   const { ref, handleSubmit, register, errors } = useFormHandler(registerSchema)
 

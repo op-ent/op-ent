@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { useTransition } from '@remix-run/react'
+import { useNavigation } from '@remix-run/react'
 import { match, P } from 'ts-pattern'
 import clsx from 'clsx'
 
 export function GlobalProgress() {
-  const transition = useTransition()
-  const active = transition.state !== 'idle'
+  const navigation = useNavigation()
+  const active = navigation.state !== 'idle'
 
   const ref = React.useRef<HTMLDivElement>(null)
   const [animationComplete, setAnimationComplete] = React.useState(true)
@@ -30,7 +30,7 @@ export function GlobalProgress() {
         ref={ref}
         className={clsx(
           'bg-primary-500 h-full transition-all duration-300 ease-in-out',
-          match([transition.state, animationComplete])
+          match([navigation.state, animationComplete])
             .with(['idle', true], () => 'w-0 opacity-0 transition-none')
             .with(['submitting', P._], () => 'w-4/12')
             .with(['loading', P._], () => 'w-10/12')

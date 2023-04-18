@@ -1,11 +1,6 @@
 /** @type {import('@remix-run/dev').AppConfig} */
 module.exports = {
   ignoredRouteFiles: ['**/.*'],
-  server:
-    process.env.NETLIFY || process.env.NETLIFY_LOCAL
-      ? './server.js'
-      : undefined,
-  serverBuildPath: '.netlify/functions-internal/server.js',
   serverDependenciesToBundle: [
     'shared-ui',
     'client',
@@ -20,11 +15,12 @@ module.exports = {
     'tailwind.config.js',
   ],
   future: {
+    v2_errorBoundary: true,
+    v2_normalizeFormMethod: true,
     v2_routeConvention: true,
     v2_meta: true,
     unstable_tailwind: true,
+    // unstable_dev: true,
   },
   appDirectory: 'src',
-  // assetsBuildDirectory: "public/build",
-  // publicPath: "/build/",
 }
