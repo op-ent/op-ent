@@ -3,7 +3,7 @@
     "default": {
       "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["lint", "test"]
+        "cacheableOperations": ["lint"]
       }
     }
   },
@@ -12,10 +12,6 @@
   },
   "targetDefaults": {
     "lint": {
-      "inputs": ["default"],
-      "output": []
-    },
-    "test": {
       "inputs": ["default"],
       "output": []
     }

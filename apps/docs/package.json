@@ -10,7 +10,6 @@
   },
   "devDependencies": {
     "eslint": "^8.34.0",
-    "eslint-config-shared": "workspace:*",
     "vitepress": "1.0.0-alpha.47",
     "vue": "^3.2.47"
   },

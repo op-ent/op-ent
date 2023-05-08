@@ -2,11 +2,5 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "conventionalCommits.scopes": [
-    "api",
-    "app",
-    "shared-ui",
-    "docs",
-    "www"
-  ]
+  "conventionalCommits.scopes": ["app", "docs", "www"]
 }
