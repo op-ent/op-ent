@@ -45,6 +45,9 @@ export const authOptions: NextAuthOptions = {
     }),
   },
   adapter: PrismaAdapter(prisma),
+  pages: {
+    signIn: "/auth/signin",
+  },
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -53,7 +56,12 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        if (!credentials) return null;
+        if (
+          !credentials ||
+          credentials.email === "" ||
+          credentials.password === ""
+        )
+          return null;
         // TODO: hash
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
