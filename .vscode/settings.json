@@ -2,5 +2,8 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "conventionalCommits.scopes": ["app", "docs", "www"]
+  "conventionalCommits.scopes": ["app", "docs", "www"],
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  }
 }

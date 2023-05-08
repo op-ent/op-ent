@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:15.0-alpine
+    volumes:
+      - ./docker-data/postgresql:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - '${DB_PORT}:5432'
+
+  redis:
+    container_name: redis
+    image: redis:7.0.5-alpine
+    volumes:
+      - ./docker-data/redis:/data
+    ports:
+      - 6379:6379

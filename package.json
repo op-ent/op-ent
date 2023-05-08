@@ -11,6 +11,7 @@
     "docs:dev": "pnpm --filter docs dev",
     "www:dev": "pnpm --filter www dev",
     "app:dev": "pnpm --filter app dev",
+    "app:docker:dev": "pnpm --filter app docker:dev",
     "lint": "pnpm lint:all && pnpm format",
     "format": "prettier --write --cache .",
     "lint:all": "nx run-many --parallel --all --target=lint --fix",
